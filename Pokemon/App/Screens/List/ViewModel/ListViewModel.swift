@@ -7,14 +7,14 @@
 
 import Foundation
 
-enum ViewControllerStates {
+enum ListViewControllerStates {
     case loading
     case loaded
     case error
 }
 
 class ListViewModel {
-    var state: Bindable<ViewControllerStates> = Bindable(value: .loading)
+    var state: Bindable<ListViewControllerStates> = Bindable(value: .loading)
     
     func loadData() {
   
