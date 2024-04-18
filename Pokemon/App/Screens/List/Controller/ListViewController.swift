@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ListViewController.swift
 //  Pokemon
 //
 //  Created by Diggo Silva on 17/04/24.
@@ -7,10 +7,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ListViewController: UIViewController {
     
     var labelTest = UILabel()
-    var viewModel = ViewControllerViewModel()
+    var viewModel = ListViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
