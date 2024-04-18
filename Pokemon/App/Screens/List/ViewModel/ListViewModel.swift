@@ -1,5 +1,5 @@
 //
-//  ViewControllerViewModel.swift
+//  ListViewModel.swift
 //  Pokemon
 //
 //  Created by Diggo Silva on 17/04/24.
@@ -13,7 +13,7 @@ enum ViewControllerStates {
     case error
 }
 
-class ViewControllerViewModel {
+class ListViewModel {
     var state: Bindable<ViewControllerStates> = Bindable(value: .loading)
     
     func loadData() {
