@@ -14,6 +14,8 @@
 		926F95382BD00C7B00E38861 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 926F95362BD00C7B00E38861 /* LaunchScreen.storyboard */; };
 		926F95432BD0355C00E38861 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926F95422BD0355C00E38861 /* ListViewModel.swift */; };
 		926F95452BD0356900E38861 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926F95442BD0356900E38861 /* Bindable.swift */; };
+		92879A842BD152330059348B /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92879A832BD152330059348B /* ListView.swift */; };
+		92879A862BD152490059348B /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92879A852BD152480059348B /* ListCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		926F95392BD00C7B00E38861 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		926F95422BD0355C00E38861 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		926F95442BD0356900E38861 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
+		92879A832BD152330059348B /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		92879A852BD152480059348B /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,8 @@
 		92149E9C2BD094EB00B50C7D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				92879A832BD152330059348B /* ListView.swift */,
+				92879A852BD152480059348B /* ListCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -222,6 +228,8 @@
 			files = (
 				926F95452BD0356900E38861 /* Bindable.swift in Sources */,
 				926F95302BD00C7A00E38861 /* ListViewController.swift in Sources */,
+				92879A842BD152330059348B /* ListView.swift in Sources */,
+				92879A862BD152490059348B /* ListCell.swift in Sources */,
 				926F952C2BD00C7A00E38861 /* AppDelegate.swift in Sources */,
 				926F952E2BD00C7A00E38861 /* SceneDelegate.swift in Sources */,
 				926F95432BD0355C00E38861 /* ListViewModel.swift in Sources */,
