@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ListCell: UITableViewCell {
     static let identifier = "ListCell"
@@ -35,6 +36,12 @@ class ListCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(pokemonResponse: Pokemon) {
+        guard let url = URL(string: pokemonResponse.image) else { return }
+        imagePokemon.sd_setImage(with: url)
+        namePokemon.text = pokemonResponse.name.capitalized
     }
     
     private func setupView() {

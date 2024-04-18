@@ -9,8 +9,8 @@ import UIKit
 
 class ListViewController: UIViewController {
     
-    var listView = ListView()
-    var viewModel = ListViewModel()
+    lazy var viewModel = ListViewModel()
+    lazy var listView = ListView(viewModel: viewModel)
     
     override func loadView() {
         super.loadView()
@@ -35,24 +35,35 @@ class ListViewController: UIViewController {
         viewModel.state.bind { states in
             switch states {
             case .loading:
-                self.showLoadingState()
+                return self.showLoadingState()
             case .loaded:
-                self.showLoadedState()
+                return self.showLoadedState()
             case .error:
-                self.showErrorState()
+                return self.showErrorState()
             }
         }
     }
     
     func showLoadingState() {
-        
+        listView.removeFromSuperview()
     }
     
     func showLoadedState() {
-       
+        listView.spinner.stopAnimating()
+        listView.tableView.reloadData()
     }
     
     func showErrorState() {
-        
+        let alert = UIAlertController(title: "Opa, Ocorreu um erro!", message: "Tentar novamente?", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Sim", style: .default) { action in
+            self.viewModel.loadData()
+        }
+        let nok = UIAlertAction(title: "Não", style: .cancel) { action in
+            self.listView.spinner.stopAnimating()
+            self.listView.labelError.isHidden = false
+        }
+        alert.addAction(ok)
+        alert.addAction(nok)
+        present(alert, animated: true)
     }
 }
