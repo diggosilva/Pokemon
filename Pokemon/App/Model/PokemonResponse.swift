@@ -10,6 +10,12 @@ import Foundation
 // MARK: PokemonResponse
 struct PokemonResponse: Codable {
     let name: String
+    let url: String
+    let id: Int?
+    let height: Int?
+    let weight: Int?
+    let experience: Int?
+    let image: String
 }
 
 // MARK: Pokemon
