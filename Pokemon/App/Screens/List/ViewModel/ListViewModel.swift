@@ -20,24 +20,17 @@ class ListViewModel {
     var pokemons: [Pokemon] = []
     var dispatchGroup = DispatchGroup()
     
-    func loadData() {
+    func loadDataPokemons() {
         dispatchGroup.enter()
-        service.getPokemonName { pokemonNames in
+        service.getPokemonName { pokemonNames, id in
             for pokemonName in pokemonNames {
-                self.dispatchGroup.enter()
-                self.service.getPokemonImage(name: pokemonName.name) { pokemonImages in
-                    self.pokemons.append(Pokemon(
-                        name: pokemonName.name,
-                        height: pokemonImages.height,
-                        weight: pokemonImages.weight,
-                        experience: pokemonImages.baseExperience,
-                        id: pokemonImages.id,
-                        image: pokemonImages.sprites.other.officialArtwork.frontDefault))
-                    self.state.value = .loaded
-                    self.dispatchGroup.leave()
-                } onError: { error in
-                    print(error)
-                }
+                self.pokemons.append(Pokemon(
+                    name: pokemonName.name,
+                    height: pokemonName.height ?? 0,
+                    weight: pokemonName.weight ?? 0,
+                    experience: pokemonName.experience ?? 0,
+                    id: pokemonName.id ?? 0,
+                    image: pokemonName.image))
             }
             self.state.value = .loaded
             self.dispatchGroup.leave()

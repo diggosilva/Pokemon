@@ -21,7 +21,7 @@ class ListViewController: UIViewController {
         super.viewDidLoad()
         setNavBar()
         handleStates()
-        viewModel.loadData()
+        viewModel.loadDataPokemons()
     }
     
     private func setNavBar() {
@@ -56,7 +56,7 @@ class ListViewController: UIViewController {
     func showErrorState() {
         let alert = UIAlertController(title: "Opa, Ocorreu um erro!", message: "Tentar novamente?", preferredStyle: .alert)
         let ok = UIAlertAction(title: "Sim", style: .default) { action in
-            self.viewModel.loadData()
+            self.viewModel.loadDataPokemons()
         }
         let nok = UIAlertAction(title: "Não", style: .cancel) { action in
             self.listView.spinner.stopAnimating()

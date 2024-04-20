@@ -12,6 +12,7 @@ class ListView: UIView {
         let spinner = UIActivityIndicatorView(style: .large)
         spinner.translatesAutoresizingMaskIntoConstraints = false
         spinner.startAnimating()
+        spinner.color = .systemIndigo
         return spinner
     }()
 
@@ -21,6 +22,9 @@ class ListView: UIView {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ListCell.self, forCellReuseIdentifier: ListCell.identifier)
+        tableView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.5)
+        tableView.separatorStyle = .none
+        tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         return tableView
     }()
     
@@ -67,11 +71,11 @@ class ListView: UIView {
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
             
-            spinner.centerXAnchor.constraint(equalTo: tableView.centerXAnchor),
-            spinner.centerYAnchor.constraint(equalTo: tableView.centerYAnchor),
+            spinner.centerXAnchor.constraint(equalTo: centerXAnchor),
+            spinner.centerYAnchor.constraint(equalTo: centerYAnchor),
             
-            labelError.centerXAnchor.constraint(equalTo: tableView.centerXAnchor),
-            labelError.centerYAnchor.constraint(equalTo: tableView.centerYAnchor),
+            labelError.centerXAnchor.constraint(equalTo: centerXAnchor),
+            labelError.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
     }
 }
@@ -85,5 +89,9 @@ extension ListView: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ListCell.identifier, for: indexPath) as? ListCell else { return UITableViewCell() }
         cell.configure(pokemonResponse: viewModel.cellForRowAt(indexPath: indexPath))
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
