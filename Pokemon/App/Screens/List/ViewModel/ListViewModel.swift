@@ -23,15 +23,7 @@ class ListViewModel {
     func loadDataPokemons() {
         dispatchGroup.enter()
         service.getPokemonName { pokemonNames, id in
-            for pokemonName in pokemonNames {
-                self.pokemons.append(Pokemon(
-                    name: pokemonName.name,
-                    height: pokemonName.height ?? 0,
-                    weight: pokemonName.weight ?? 0,
-                    experience: pokemonName.experience ?? 0,
-                    id: pokemonName.id ?? 0,
-                    image: pokemonName.image))
-            }
+            self.pokemons = pokemonNames
             self.state.value = .loaded
             self.dispatchGroup.leave()
         } onError: { error in

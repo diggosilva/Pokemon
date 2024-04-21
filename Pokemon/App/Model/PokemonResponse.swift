@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: PokemonResponse
-struct PokemonResponse: Codable {
+struct Pokemon: Codable {
     let name: String
     let url: String
     let id: Int?
@@ -18,12 +18,12 @@ struct PokemonResponse: Codable {
     let image: String
 }
 
-// MARK: Pokemon
-struct Pokemon {
-    let name: String
-    let height: Int
-    let weight: Int
-    let experience: Int
-    let id: Int
-    let image: String
-}
+//// MARK: Pokemon
+//struct Pokemon {
+//    let name: String
+//    let height: Int
+//    let weight: Int
+//    let experience: Int
+//    let id: Int
+//    let image: String
+//}
