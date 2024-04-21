@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: PokemonNameBackEnd
-struct PokemonNameBackEnd: Codable {
+struct PokemonResponse: Codable {
     let results: [Result]
 }
 
