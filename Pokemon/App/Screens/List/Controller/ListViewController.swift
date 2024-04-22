@@ -31,7 +31,7 @@ class ListViewController: UIViewController {
         navigationItem.titleView = titleView
     }
     
-    func handleStates() {
+    private func handleStates() {
         viewModel.state.bind { states in
             switch states {
             case .loading:
@@ -48,12 +48,12 @@ class ListViewController: UIViewController {
         listView.removeFromSuperview()
     }
     
-    func showLoadedState() {
+    private func showLoadedState() {
         listView.spinner.stopAnimating()
         listView.tableView.reloadData()
     }
     
-    func showErrorState() {
+    private func showErrorState() {
         let alert = UIAlertController(title: "Opa, Ocorreu um erro!", message: "Tentar novamente?", preferredStyle: .alert)
         let ok = UIAlertAction(title: "Sim", style: .default) { action in
             self.viewModel.loadDataPokemons()

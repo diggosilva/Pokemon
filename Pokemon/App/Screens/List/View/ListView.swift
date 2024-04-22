@@ -15,7 +15,7 @@ class ListView: UIView {
         spinner.color = .systemIndigo
         return spinner
     }()
-
+    
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -87,7 +87,7 @@ extension ListView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ListCell.identifier, for: indexPath) as? ListCell else { return UITableViewCell() }
-        cell.configure(pokemonResponse: viewModel.cellForRowAt(indexPath: indexPath))
+        cell.configure(pokemon: viewModel.cellForRowAt(indexPath: indexPath))
         return cell
     }
     

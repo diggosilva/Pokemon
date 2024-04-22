@@ -28,15 +28,14 @@ class Service: ServiceProtocol {
         dataTask = URLSession.shared.dataTask(with: url, completionHandler: { data, response, error in
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 if let response = response as? HTTPURLResponse {
-                    print("DEBUG: Status Code FOR NAME.. \(response.statusCode)")
+                    print("DEBUG: Status Code.. \(response.statusCode)")
                 }
-                
                 if let data = data {
                     do {
                         let pokemonResponse = try JSONDecoder().decode(PokemonResponse.self, from: data)
                         var pokemon: [Pokemon] = []
                         var ids: [String] = []
-                       
+                        
                         for namePokemon in pokemonResponse.results {
                             var id = namePokemon.url.components(separatedBy: "https://pokeapi.co/api/v2/pokemon/").last ?? ""
                             id = String(id.dropLast())
@@ -45,11 +44,10 @@ class Service: ServiceProtocol {
                             
                             pokemon.append(Pokemon(name: namePokemon.name, url: namePokemon.url, id: nil, height: nil, weight: nil, experience: nil, image: urlImage))
                         }
-                        
                         onSuccess(pokemon, ids)
                         print("DEBUG: Nome dos Pokemons: \(pokemon)")
                         print("DEBUG: ID dos Pokemons: \(ids)")
-
+                        
                     } catch {
                         onError(error)
                         print("Erro ao decodificar Nome do Pokemon \(error.localizedDescription)")
@@ -59,28 +57,4 @@ class Service: ServiceProtocol {
         })
         dataTask?.resume()
     }
-    
-//    func getPokemonImage(name: String, onSuccess: @escaping(PokemonImageBackEnd) -> Void, onError: @escaping(Error) -> Void) {
-//        guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon/\(name)") else { return }
-//        let urlRequest = URLRequest(url: url)
-//        
-//        dataTask = URLSession.shared.dataTask(with: urlRequest, completionHandler: { data, response, error in
-//            DispatchQueue.main.async {
-//                if let response = response as? HTTPURLResponse {
-//                    print("DEBUG: Status Code FOR IMAGE.. \(response.statusCode)")
-//                }
-//                if let data = data {
-//                    do {
-//                        let response = try JSONDecoder().decode(PokemonImageBackEnd.self, from: data)
-//                        onSuccess(response)
-//                        print("DEBUG: IMAGENS.. \(response.sprites.other.officialArtwork.frontDefault)")
-//                    } catch {
-//                        onError(error)
-//                        print("Erro ao decodificar Imagem do Pokemon \(error)")
-//                    }
-//                }
-//            }
-//        })
-//        dataTask?.resume()
-//    }
 }

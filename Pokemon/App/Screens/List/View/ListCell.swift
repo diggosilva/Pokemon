@@ -48,18 +48,18 @@ class ListCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setAlphaValue(alpha: CGFloat) {
+    private func setAlphaValue(alpha: CGFloat) {
         viewBG.alpha = alpha
         imagePokemon.alpha = alpha
         namePokemon.alpha = alpha
     }
     
-    func configure(pokemonResponse: Pokemon) {
+    func configure(pokemon: Pokemon) {
         setAlphaValue(alpha: 0)
         UIView.animate(withDuration: 0.2) {
-            guard let url = URL(string: pokemonResponse.image) else { return }
+            guard let url = URL(string: pokemon.imageURL) else { return }
             self.imagePokemon.sd_setImage(with: url)
-            self.namePokemon.text = pokemonResponse.name.capitalized
+            self.namePokemon.text = pokemon.name.capitalized
             self.accessoryType = .disclosureIndicator
             self.setAlphaValue(alpha: 1)
         }
