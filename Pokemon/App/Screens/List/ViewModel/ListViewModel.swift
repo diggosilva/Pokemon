@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum ListViewControllerStates {
     case loading
@@ -17,13 +18,15 @@ class ListViewModel {
     var state: Bindable<ListViewControllerStates> = Bindable(value: .loading)
     var service = Service()
     
-    var pokemons: [Pokemon] = []
+    private var pokemons: [Pokemon] = []
+    private var filteredPokemons: [Pokemon] = []
     var dispatchGroup = DispatchGroup()
     
     func loadDataPokemons() {
         dispatchGroup.enter()
         service.getPokemonName { pokemonNames, id in
             self.pokemons = pokemonNames
+            self.filteredPokemons = self.pokemons
             self.state.value = .loaded
             self.dispatchGroup.leave()
         } onError: { error in
@@ -34,10 +37,24 @@ class ListViewModel {
     }
     
     func numberOfRows() -> Int {
-        return pokemons.count
+        return filteredPokemons.count
     }
     
     func cellForRowAt(indexPath: IndexPath) -> Pokemon {
-        return pokemons[indexPath.row]
+        return filteredPokemons[indexPath.row]
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredPokemons = []
+        
+        if searchText.isEmpty {
+            filteredPokemons = pokemons
+        } else {
+            for value in pokemons {
+                if value.name.uppercased().contains(searchText.uppercased()) {
+                    filteredPokemons.append(value)
+                }
+            }
+        }
     }
 }
