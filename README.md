@@ -1,1 +1,3 @@
 # Pokemon
+
+Application under development... 🛠️
