@@ -22,8 +22,8 @@ class Service: ServiceProtocol {
         return false
     }
     
-    func getPokemonName(onSuccess: @escaping([Pokemon], [String]) -> Void, onError: @escaping(Error) -> Void) {
-        guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon?limit=10") else { return }
+    func getPokemonName(offset: Int, onSuccess: @escaping([Pokemon], [String]) -> Void, onError: @escaping(Error) -> Void) {
+        guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon?limit=20&offset=\(offset)") else { return }
         
         dataTask = URLSession.shared.dataTask(with: url, completionHandler: { data, response, error in
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -47,7 +47,6 @@ class Service: ServiceProtocol {
                         onSuccess(pokemon, ids)
                         print("DEBUG: Nome dos Pokemons: \(pokemon)")
                         print("DEBUG: ID dos Pokemons: \(ids)")
-                        
                     } catch {
                         onError(error)
                         print("Erro ao decodificar Nome do Pokemon \(error.localizedDescription)")
