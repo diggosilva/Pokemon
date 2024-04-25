@@ -21,10 +21,11 @@ class ListViewModel {
     private var pokemons: [Pokemon] = []
     private var filteredPokemons: [Pokemon] = []
     var dispatchGroup = DispatchGroup()
+    var offset = 0
     
     func loadDataPokemons() {
         dispatchGroup.enter()
-        service.getPokemonName { pokemonNames, id in
+        service.getPokemonName(offset: 0) { pokemonNames, id in
             self.pokemons = pokemonNames
             self.filteredPokemons = self.pokemons
             self.state.value = .loaded
@@ -54,6 +55,20 @@ class ListViewModel {
                 if value.name.uppercased().contains(searchText.uppercased()) {
                     filteredPokemons.append(value)
                 }
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let lastRowIndex = tableView.numberOfRows(inSection: 0) - 1
+        if indexPath.row == lastRowIndex && filteredPokemons == pokemons {
+            offset += 20
+            service.getPokemonName(offset: offset) { pokemons, ids in
+                self.pokemons.append(contentsOf: pokemons)
+                self.filteredPokemons.append(contentsOf: pokemons)
+                self.state.value = .loaded
+            } onError: { error in
+                self.state.value = .error
             }
         }
     }

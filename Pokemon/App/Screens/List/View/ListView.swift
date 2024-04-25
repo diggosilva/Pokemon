@@ -107,11 +107,15 @@ extension ListView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        searchBar.resignFirstResponder()
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        viewModel.tableView(tableView, willDisplay: cell, forRowAt: indexPath)
     }
 }
 
 extension ListView: UISearchBarDelegate {
- 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         viewModel.searchBar(searchBar, textDidChange: searchText)
         tableView.reloadData()
