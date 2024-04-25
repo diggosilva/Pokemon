@@ -22,7 +22,6 @@ class ListViewModel {
     private var filteredPokemons: [Pokemon] = []
     var dispatchGroup = DispatchGroup()
     var offset = 0
-    var rodou = 0
     
     func loadDataPokemons() {
         dispatchGroup.enter()
@@ -61,7 +60,6 @@ class ListViewModel {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        rodou += 1
         let lastRowIndex = tableView.numberOfRows(inSection: 0) - 1
         if indexPath.row == lastRowIndex && filteredPokemons == pokemons {
             offset += 20
