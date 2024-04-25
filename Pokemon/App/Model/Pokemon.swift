@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: Pokemon
-struct Pokemon {
+struct Pokemon: Equatable {
     let name: String
     let url: String
     let id: Int?
