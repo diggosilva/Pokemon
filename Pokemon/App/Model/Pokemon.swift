@@ -23,3 +23,8 @@ struct Pokemon: Equatable {
         return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/\(String(describing: id)).png"
     }
 }
+
+struct SemNome: Equatable {
+    var pokemonList: Pokemon
+    var nextUrl: String?
+}

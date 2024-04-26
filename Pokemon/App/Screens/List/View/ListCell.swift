@@ -36,6 +36,9 @@ class ListCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.monospacedSystemFont(ofSize: 20, weight: .semibold)
         label.textColor = .black
+        label.numberOfLines = 2
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.75
         return label
     }()
     
@@ -54,12 +57,12 @@ class ListCell: UITableViewCell {
         namePokemon.alpha = alpha
     }
     
-    func configure(pokemon: Pokemon) {
+    func configure(pokemon: SemNome) {
         setAlphaValue(alpha: 0)
         UIView.animate(withDuration: 0.2) {
-            guard let url = URL(string: pokemon.imageURL) else { return }
+            guard let url = URL(string: pokemon.pokemonList.imageURL) else { return }
             self.imagePokemon.sd_setImage(with: url)
-            self.namePokemon.text = pokemon.name.capitalized
+            self.namePokemon.text = pokemon.pokemonList.name.capitalized
             self.accessoryType = .disclosureIndicator
             self.setAlphaValue(alpha: 1)
         }
@@ -92,7 +95,7 @@ class ListCell: UITableViewCell {
             
             namePokemon.centerYAnchor.constraint(equalTo: imagePokemon.centerYAnchor),
             namePokemon.leadingAnchor.constraint(equalTo: imagePokemon.trailingAnchor, constant: 10),
-            namePokemon.trailingAnchor.constraint(equalTo: viewBG.trailingAnchor, constant: -5),
+            namePokemon.trailingAnchor.constraint(equalTo: viewBG.trailingAnchor, constant: -10),
         ])
     }
 }
