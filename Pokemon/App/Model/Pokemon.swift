@@ -24,7 +24,7 @@ struct Pokemon: Equatable {
     }
 }
 
-struct SemNome: Equatable {
-    var pokemonList: Pokemon
-    var nextUrl: String?
-}
+//struct SemNome: Equatable {
+//    var pokemonList: Pokemon
+//    var nextUrl: String?
+//}

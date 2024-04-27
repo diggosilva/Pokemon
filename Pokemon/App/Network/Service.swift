@@ -22,8 +22,8 @@ class Service: ServiceProtocol {
         return false
     }
     
-    func getPokemonName(offset: Int, onSuccess: @escaping(String?, [SemNome], [String]) -> Void, onError: @escaping(Error) -> Void) {
-        guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon?limit=500&offset=\(offset)") else { return }
+    func getPokemon(url: String, onSuccess: @escaping(String?, [Pokemon]) -> Void, onError: @escaping(Error) -> Void) {
+        guard let url = URL(string: url) else { return }
         
         dataTask = URLSession.shared.dataTask(with: url, completionHandler: { data, response, error in
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -33,23 +33,20 @@ class Service: ServiceProtocol {
                 if let data = data {
                     do {
                         let pokemonResponse = try JSONDecoder().decode(PokemonResponse.self, from: data)
-                        var pokemon: [SemNome] = []
-                        var ids: [String] = []
-                        var nextURL: String?
+                        var pokemon: [Pokemon] = []
+                        var nextUrl: String?
                         
                         for namePokemon in pokemonResponse.results {
-                            nextURL = pokemonResponse.next
+                            nextUrl = pokemonResponse.next
                             var id = namePokemon.url.components(separatedBy: "https://pokeapi.co/api/v2/pokemon/").last ?? ""
                             id = String(id.dropLast())
-                            ids.append(id)
                             let urlImage = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/\(id).png"
                             
-                            pokemon.append(SemNome(pokemonList: Pokemon(name: namePokemon.name, url: namePokemon.url, id: nil, height: nil, weight: nil, experience: nil, image: urlImage), nextUrl: pokemonResponse.next))
-//                            pokemon.append(Pokemon(name: namePokemon.name, url: namePokemon.url, id: nil, height: nil, weight: nil, experience: nil, image: urlImage))
+//                            pokemon.append(SemNome(pokemonList: Pokemon(name: namePokemon.name, url: namePokemon.url, id: nil, height: nil, weight: nil, experience: nil, image: urlImage), nextUrl: pokemonResponse.next))
+                            pokemon.append(Pokemon(name: namePokemon.name, url: namePokemon.url, id: nil, height: nil, weight: nil, experience: nil, image: urlImage))
                         }
-                        onSuccess(nextURL, pokemon, ids)
+                        onSuccess(nextUrl, pokemon)
                         print("DEBUG: Nome dos Pokemons: \(pokemon)")
-                        print("DEBUG: ID dos Pokemons: \(ids)")
                     } catch {
                         onError(error)
                         print("Erro ao decodificar Nome do Pokemon \(error.localizedDescription)")
