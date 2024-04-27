@@ -18,27 +18,20 @@ class ListViewModel {
     var state: Bindable<ListViewControllerStates> = Bindable(value: .loading)
     var service = Service()
     
-    var nextUrl: String = ""
+    var nextUrl: String?
     
-    private var pokemons: [Pokemon] = []
-    private var filteredPokemons: [Pokemon] = []
+    private var pokemons: [PokemonFeed] = []
+    private var filteredPokemons: [PokemonFeed] = []
     
     func loadDataPokemons() {
-        service.getPokemon(url: "https://pokeapi.co/api/v2/pokemon?limit=500&offset=0") { nextUrl, pokemonNames in
-            self.nextUrl = nextUrl ?? ""
-            self.pokemons = pokemonNames
-            self.filteredPokemons = self.pokemons
-            self.state.value = .loaded
-        } onError: { error in
-            self.state.value = .error
-        }
+        fetchRequest(url: "https://pokeapi.co/api/v2/pokemon?limit=20&offset=0")
     }
     
     func numberOfRows() -> Int {
         return filteredPokemons.count
     }
     
-    func cellForRowAt(indexPath: IndexPath) -> Pokemon {
+    func cellForRowAt(indexPath: IndexPath) -> PokemonFeed {
         return filteredPokemons[indexPath.row]
     }
     
@@ -60,15 +53,19 @@ class ListViewModel {
         let lastRowIndex = tableView.numberOfRows(inSection: 0) - 1
         if indexPath.row == lastRowIndex && filteredPokemons == pokemons {
             
-            service.getPokemon(url: self.nextUrl) { nextUrl, pokemonNames in
-                if self.nextUrl == nextUrl ?? "" {
-                    self.pokemons.append(contentsOf: pokemonNames)
-                    self.filteredPokemons.append(contentsOf: pokemonNames)
-                    self.state.value = .loaded
-                }
-            } onError: { error in
-                self.state.value = .error
-            }
+            guard let nextUrl else { return }
+            fetchRequest(url: nextUrl)
+        }
+    }
+    
+    func fetchRequest(url: String) {
+        service.getPokemon(url: url) { nextUrl, pokemonNames in
+            self.nextUrl = nextUrl
+            self.pokemons.append(contentsOf: pokemonNames)
+            self.filteredPokemons.append(contentsOf: pokemonNames)
+            self.state.value = .loaded
+        } onError: { error in
+            self.state.value = .error
         }
     }
 }
