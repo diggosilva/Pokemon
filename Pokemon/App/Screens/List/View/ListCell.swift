@@ -57,12 +57,12 @@ class ListCell: UITableViewCell {
         namePokemon.alpha = alpha
     }
     
-    func configure(pokemon: SemNome) {
+    func configure(pokemon: Pokemon) {
         setAlphaValue(alpha: 0)
         UIView.animate(withDuration: 0.2) {
-            guard let url = URL(string: pokemon.pokemonList.imageURL) else { return }
+            guard let url = URL(string: pokemon.imageURL) else { return }
             self.imagePokemon.sd_setImage(with: url)
-            self.namePokemon.text = pokemon.pokemonList.name.capitalized
+            self.namePokemon.text = pokemon.name.capitalized
             self.accessoryType = .disclosureIndicator
             self.setAlphaValue(alpha: 1)
         }
