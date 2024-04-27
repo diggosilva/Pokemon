@@ -57,7 +57,7 @@ class ListCell: UITableViewCell {
         namePokemon.alpha = alpha
     }
     
-    func configure(pokemon: Pokemon) {
+    func configure(pokemon: PokemonFeed) {
         setAlphaValue(alpha: 0)
         UIView.animate(withDuration: 0.2) {
             guard let url = URL(string: pokemon.imageURL) else { return }
