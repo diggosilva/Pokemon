@@ -10,7 +10,6 @@ import Foundation
 struct PokemonFeed: Equatable {
     let name: String
     let url: String
-    let image: String
     
     var imageURL: String {
         var id = url.components(separatedBy: "https://pokeapi.co/api/v2/pokemon/").last ?? ""
