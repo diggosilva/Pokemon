@@ -6,23 +6,31 @@
 //
 
 import UIKit
+import SDWebImage
 
 class DetailsView: UIView {
     lazy var viewCard: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .systemPink
+        view.backgroundColor = .systemGray5
         view.layer.cornerRadius = 15
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = CGSize(width: 5, height: 5)
+        view.layer.shadowOpacity = 0.75
+        view.layer.shadowRadius = 10
         return view
     }()
     
     lazy var imagePokemon: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .lightGray
+        imageView.backgroundColor = .systemIndigo.withAlphaComponent(0.5)
         imageView.image = UIImage(systemName: "person.fill")?.withTintColor(.systemPink, renderingMode: .alwaysOriginal)
         imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 8
+        imageView.layer.borderWidth = 1
+        imageView.layer.borderColor = UIColor.systemIndigo.cgColor
         return imageView
     }()
     
@@ -35,11 +43,11 @@ class DetailsView: UIView {
     }()
     
     lazy var labelXp: UILabel = {
-        buildLabelCard(text: "XP: ")
+        buildLabelCard(text: "XP: ", textAlignment: .left)
     }()
     
     lazy var labelId: UILabel = {
-        buildLabelCard(text: "ID: ")
+        buildLabelCard(text: "ID: ", textAlignment: .left)
     }()
     
     lazy var labelName: UILabel = {
@@ -69,12 +77,15 @@ class DetailsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(model: PokemonDetails) {
-        labelHeight.text = "Altura: \(model.height)"
-        labelWeight.text = "Peso: \(model.weight)"
-        labelXp.text = "XP: \(model.experience)"
-        labelId.text = "ID: \(model.id)"
-        labelName.text = "\(model.name)"
+    func configure(pokemonDetails: PokemonDetails) {
+        guard let url = URL(string: pokemonDetails.imageURL) else { return }
+        imagePokemon.sd_setImage(with: url)
+        labelHeight.text = "Altura: \(pokemonDetails.height)cm"
+        labelWeight.text = "Peso: \(pokemonDetails.weight)g"
+        labelXp.text = "XP: \(pokemonDetails.experience)"
+        labelId.text = "ID: \(pokemonDetails.id)"
+        labelName.text = "\(pokemonDetails.name)"
+        print("DIGGO: \(url)")
     }
     
     private func setupView() {
@@ -89,14 +100,14 @@ class DetailsView: UIView {
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            viewCard.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
+            viewCard.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
             viewCard.centerXAnchor.constraint(equalTo: centerXAnchor),
             viewCard.widthAnchor.constraint(equalToConstant: 300),
             viewCard.heightAnchor.constraint(equalToConstant: 400),
             
-            imagePokemon.topAnchor.constraint(equalTo: viewCard.topAnchor, constant: 10),
-            imagePokemon.leadingAnchor.constraint(equalTo: viewCard.leadingAnchor, constant: 10),
-            imagePokemon.trailingAnchor.constraint(equalTo: viewCard.trailingAnchor, constant: -10),
+            imagePokemon.topAnchor.constraint(equalTo: viewCard.topAnchor, constant: 20),
+            imagePokemon.leadingAnchor.constraint(equalTo: viewCard.leadingAnchor, constant: 20),
+            imagePokemon.trailingAnchor.constraint(equalTo: viewCard.trailingAnchor, constant: -20),
             imagePokemon.centerXAnchor.constraint(equalTo: viewCard.centerXAnchor),
             imagePokemon.heightAnchor.constraint(equalToConstant: 300),
             

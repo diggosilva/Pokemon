@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ListViewDelegate: AnyObject {
+    func goToDetails(id: Int)
+}
+
 class ListView: UIView {
     lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
@@ -50,6 +54,7 @@ class ListView: UIView {
         return label
     }()
     
+    weak var delegate: ListViewDelegate?
     let viewModel: ListViewModel
     
     init(viewModel: ListViewModel) {
@@ -108,6 +113,9 @@ extension ListView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         searchBar.resignFirstResponder()
+        let pokemon = viewModel.filteredPokemons[indexPath.row].url.dropLast()
+        let getIdFromUrl = pokemon.components(separatedBy: "https://pokeapi.co/api/v2/pokemon/").last ?? ""
+        delegate?.goToDetails(id: Int(getIdFromUrl) ?? 0)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

@@ -21,7 +21,7 @@ class ListViewModel {
     var nextUrl: String?
     
     private var pokemons: [PokemonFeed] = []
-    private var filteredPokemons: [PokemonFeed] = []
+    var filteredPokemons: [PokemonFeed] = []
     
     func loadDataPokemons() {
         fetchRequest(url: "https://pokeapi.co/api/v2/pokemon?limit=20&offset=0")
