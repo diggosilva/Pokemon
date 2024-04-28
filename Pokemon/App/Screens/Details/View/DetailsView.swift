@@ -43,7 +43,7 @@ class DetailsView: UIView {
     }()
     
     lazy var labelName: UILabel = {
-        buildLabelCard(text: "TESTE NOME DO POKEMON AQUI", textAlignment: .center, numberOfLines: 0, fontSize: 22)
+        buildLabelCard(text: "NOME DO POKEMON", textAlignment: .center, numberOfLines: 0, fontSize: 22)
     }()
     
     private func buildLabelCard(text: String, textAlignment: NSTextAlignment = .left, numberOfLines: Int = 1, fontSize: CGFloat = 18) -> UILabel {
@@ -67,6 +67,14 @@ class DetailsView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(model: PokemonDetails) {
+        labelHeight.text = "Altura: \(model.height)"
+        labelWeight.text = "Peso: \(model.weight)"
+        labelXp.text = "XP: \(model.experience)"
+        labelId.text = "ID: \(model.id)"
+        labelName.text = "\(model.name)"
     }
     
     private func setupView() {

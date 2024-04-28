@@ -37,11 +37,7 @@ class Service: ServiceProtocol {
                         let nextUrl = pokemonResponse.next
                         
                         for namePokemon in pokemonResponse.results {
-                            var id = namePokemon.url.components(separatedBy: "https://pokeapi.co/api/v2/pokemon/").last ?? ""
-                            id = String(id.dropLast())
-                            let urlImage = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/\(id).png"
-                            
-                            pokemon.append(PokemonFeed(name: namePokemon.name, url: namePokemon.url, image: urlImage))
+                            pokemon.append(PokemonFeed(name: namePokemon.name, url: namePokemon.url))
                         }
                         onSuccess(nextUrl, pokemon)
                         print("DEBUG: Nome dos Pokemons: \(pokemon)")
