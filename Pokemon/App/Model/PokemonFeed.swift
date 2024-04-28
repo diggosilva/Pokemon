@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: Pokemon
 struct PokemonFeed: Equatable {
     let name: String
     let url: String

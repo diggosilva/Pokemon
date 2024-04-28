@@ -60,6 +60,7 @@ class ListViewController: UIViewController {
         }
         let nok = UIAlertAction(title: "Não", style: .cancel) { action in
             self.listView.spinner.stopAnimating()
+            self.listView.tableView.isHidden = true
             self.listView.labelError.isHidden = false
         }
         alert.addAction(ok)
