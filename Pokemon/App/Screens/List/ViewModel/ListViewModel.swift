@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 enum ListViewControllerStates {
     case loading
@@ -35,7 +34,7 @@ class ListViewModel {
         return filteredPokemons[indexPath.row]
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(textDidChange searchText: String) {
         filteredPokemons = []
         
         if searchText.isEmpty {
@@ -49,10 +48,10 @@ class ListViewModel {
         }
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastRowIndex = tableView.numberOfRows(inSection: 0) - 1
+    func tableView(forRowAt indexPath: IndexPath) {
+        let lastRowIndex = numberOfRows()
         
-        guard indexPath.row == lastRowIndex && filteredPokemons == pokemons, let nextUrl else { return } // VIDEO 3
+        guard indexPath.row == lastRowIndex - 1 && filteredPokemons == pokemons, let nextUrl else { return }
         fetchRequest(url: nextUrl)
     }
     
