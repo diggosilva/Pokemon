@@ -64,7 +64,7 @@ class DetailsViewController: UIViewController {
             self.viewModel.loadDataDetails()
         }
         let nok = UIAlertAction(title: "Não", style: .cancel) { action in
-            self.detailsView.removeFromSuperview()
+            
         }
         alert.addAction(ok)
         alert.addAction(nok)

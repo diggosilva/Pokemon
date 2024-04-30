@@ -113,9 +113,8 @@ extension ListView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         searchBar.resignFirstResponder()
-        let pokemon = viewModel.filteredPokemons[indexPath.row].url.dropLast()
-        let getIdFromUrl = pokemon.components(separatedBy: "https://pokeapi.co/api/v2/pokemon/").last ?? ""
-        delegate?.goToDetails(id: Int(getIdFromUrl) ?? 0)
+        let pokemon = viewModel.filteredPokemons[indexPath.row].getId
+        delegate?.goToDetails(id: Int(pokemon))
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
