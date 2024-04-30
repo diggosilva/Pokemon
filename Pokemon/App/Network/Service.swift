@@ -9,27 +9,16 @@ import Foundation
 
 protocol ServiceProtocol {
     var dataTask: URLSessionDataTask? { get set }
-    func isUpdating() -> Bool
 }
 
 class Service: ServiceProtocol {
     var dataTask: URLSessionDataTask?
-    
-    func isUpdating() -> Bool {
-        if let dataTask = dataTask {
-            return dataTask.state == .running
-        }
-        return false
-    }
     
     func getPokemon(url: String, onSuccess: @escaping(String?, [PokemonFeed]) -> Void, onError: @escaping(Error) -> Void) {
         guard let url = URL(string: url) else { return }
         
         dataTask = URLSession.shared.dataTask(with: url, completionHandler: { data, response, error in
             DispatchQueue.main.async {
-                if let response = response as? HTTPURLResponse {
-                    print("DEBUG: Status Code.. \(response.statusCode)")
-                }
                 if let data = data {
                     do {
                         let pokemonResponse = try JSONDecoder().decode(PokemonResponse.self, from: data)
@@ -56,9 +45,6 @@ class Service: ServiceProtocol {
         
         dataTask = URLSession.shared.dataTask(with: url, completionHandler: { data, response, error in
             DispatchQueue.main.async {
-                if let response = response as? HTTPURLResponse {
-                    print("STATUS CODE: \(response)")
-                }
                 if let data = data {
                     do {
                         let pokemonDetailsResponse = try JSONDecoder().decode(PokemonDetailsResponse.self, from: data)
@@ -69,10 +55,8 @@ class Service: ServiceProtocol {
                             height: pokemonDetailsResponse.height,
                             weight: pokemonDetailsResponse.weight,
                             experience: pokemonDetailsResponse.baseExperience,
-                            image: pokemonDetailsResponse.sprites.other.officialArtwork.frontDefault
-                        )
+                            image: pokemonDetailsResponse.sprites.other.officialArtwork.frontDefault)
                         onSuccess(pokemonDetails)
-                        print("POKEMON SELECIONADO: \(pokemonDetails)")
                     } catch {
                         onError(error)
                     }
