@@ -71,8 +71,9 @@ class ListViewController: UIViewController {
 }
 
 extension ListViewController: ListViewDelegate {
-    func goToDetails(id: Int) {
-        let detailsVC = DetailsViewController(id: id)
+    func goToDetails(indexPath: IndexPath) {
+        let pokemonId = viewModel.cellForRowAt(indexPath: indexPath).getId
+        let detailsVC = DetailsViewController(id: pokemonId)
         navigationController?.pushViewController(detailsVC, animated: true)
     }
 }

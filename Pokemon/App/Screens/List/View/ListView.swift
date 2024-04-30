@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ListViewDelegate: AnyObject {
-    func goToDetails(id: Int)
+    func goToDetails(indexPath: IndexPath)
 }
 
 class ListView: UIView {
@@ -113,8 +113,7 @@ extension ListView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         searchBar.resignFirstResponder()
-        let pokemonId = viewModel.cellForRowAt(indexPath: indexPath).getId
-        delegate?.goToDetails(id: Int(pokemonId))
+        delegate?.goToDetails(indexPath: indexPath)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
