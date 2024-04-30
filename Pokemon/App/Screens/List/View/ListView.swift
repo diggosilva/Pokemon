@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ListViewDelegate: AnyObject {
+    func goToDetails(id: Int)
+}
+
 class ListView: UIView {
     lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
@@ -50,6 +54,7 @@ class ListView: UIView {
         return label
     }()
     
+    weak var delegate: ListViewDelegate?
     let viewModel: ListViewModel
     
     init(viewModel: ListViewModel) {
@@ -108,16 +113,18 @@ extension ListView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         searchBar.resignFirstResponder()
+        let pokemonId = viewModel.cellForRowAt(indexPath: indexPath).getId
+        delegate?.goToDetails(id: Int(pokemonId))
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        viewModel.tableView(tableView, willDisplay: cell, forRowAt: indexPath)
+        viewModel.tableView(forRowAt: indexPath)
     }
 }
 
 extension ListView: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        viewModel.searchBar(searchBar, textDidChange: searchText)
+        viewModel.searchBar(textDidChange: searchText)
         tableView.reloadData()
     }
     
