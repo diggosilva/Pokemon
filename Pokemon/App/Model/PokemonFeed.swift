@@ -16,4 +16,10 @@ struct PokemonFeed: Equatable {
         id = String(id.dropLast())
         return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/\(String(describing: id)).png"
     }
+    
+    var getId: Int {
+        var id = url.components(separatedBy: "https://pokeapi.co/api/v2/pokemon/").last ?? ""
+        id = String(id.dropLast())
+        return Int(id) ?? 0
+    }
 }
