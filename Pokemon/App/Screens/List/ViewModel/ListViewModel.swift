@@ -15,13 +15,13 @@ enum ListViewControllerStates {
 }
 
 class ListViewModel {
-    var state: Bindable<ListViewControllerStates> = Bindable(value: .loading)
-    var service = Service()
+    private (set) var state: Bindable<ListViewControllerStates> = Bindable(value: .loading)
+    private var service = Service()
     
-    var nextUrl: String?
+    private var nextUrl: String?
     
     private var pokemons: [PokemonFeed] = []
-    var filteredPokemons: [PokemonFeed] = []
+    private var filteredPokemons: [PokemonFeed] = []
     
     func loadDataPokemons() {
         fetchRequest(url: "https://pokeapi.co/api/v2/pokemon?limit=20&offset=0")
