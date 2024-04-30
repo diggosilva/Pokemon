@@ -29,7 +29,6 @@ class Service: ServiceProtocol {
                             pokemon.append(PokemonFeed(name: namePokemon.name, url: namePokemon.url))
                         }
                         onSuccess(nextUrl, pokemon)
-                        print("DEBUG: Nome dos Pokemons: \(pokemon)")
                     } catch {
                         onError(error)
                         print("Erro ao decodificar Nome do Pokemon \(error.localizedDescription)")
@@ -59,6 +58,7 @@ class Service: ServiceProtocol {
                         onSuccess(pokemonDetails)
                     } catch {
                         onError(error)
+                        print("Erro ao decodificar Detalhes do Pokemon \(error.localizedDescription)")
                     }
                 }
             }
