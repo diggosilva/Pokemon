@@ -29,6 +29,7 @@ class ListViewController: UIViewController {
         let titleView = UIImageView(image: UIImage(named: "logo"))
         titleView.contentMode = .scaleAspectFit
         navigationItem.titleView = titleView
+        listView.delegate = self
     }
     
     private func handleStates() {
@@ -60,10 +61,18 @@ class ListViewController: UIViewController {
         }
         let nok = UIAlertAction(title: "Não", style: .cancel) { action in
             self.listView.spinner.stopAnimating()
+            self.listView.tableView.isHidden = true
             self.listView.labelError.isHidden = false
         }
         alert.addAction(ok)
         alert.addAction(nok)
         present(alert, animated: true)
+    }
+}
+
+extension ListViewController: ListViewDelegate {
+    func goToDetails(id: Int) {
+        let detailsVC = DetailsViewController(id: id)
+        navigationController?.pushViewController(detailsVC, animated: true)
     }
 }

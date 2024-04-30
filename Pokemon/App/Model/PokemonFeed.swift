@@ -7,15 +7,17 @@
 
 import Foundation
 
-// MARK: Pokemon
 struct PokemonFeed: Equatable {
     let name: String
     let url: String
-    let image: String
     
     var imageURL: String {
+        return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/\(String(describing: getId)).png"
+    }
+    
+    var getId: Int {
         var id = url.components(separatedBy: "https://pokeapi.co/api/v2/pokemon/").last ?? ""
         id = String(id.dropLast())
-        return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/\(String(describing: id)).png"
+        return Int(id) ?? 0
     }
 }

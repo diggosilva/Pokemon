@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 enum ListViewControllerStates {
     case loading
@@ -15,10 +14,10 @@ enum ListViewControllerStates {
 }
 
 class ListViewModel {
-    var state: Bindable<ListViewControllerStates> = Bindable(value: .loading)
-    var service = Service()
+    private (set) var state: Bindable<ListViewControllerStates> = Bindable(value: .loading)
+    private var service = Service()
     
-    var nextUrl: String?
+    private var nextUrl: String?
     
     private var pokemons: [PokemonFeed] = []
     private var filteredPokemons: [PokemonFeed] = []
@@ -35,7 +34,7 @@ class ListViewModel {
         return filteredPokemons[indexPath.row]
     }
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(textDidChange searchText: String) {
         filteredPokemons = []
         
         if searchText.isEmpty {
@@ -49,13 +48,11 @@ class ListViewModel {
         }
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastRowIndex = tableView.numberOfRows(inSection: 0) - 1
-        if indexPath.row == lastRowIndex && filteredPokemons == pokemons {
-            
-            guard let nextUrl else { return }
-            fetchRequest(url: nextUrl)
-        }
+    func tableView(forRowAt indexPath: IndexPath) {
+        let lastRowIndex = numberOfRows()
+        
+        guard indexPath.row == lastRowIndex - 1 && filteredPokemons == pokemons, let nextUrl else { return }
+        fetchRequest(url: nextUrl)
     }
     
     func fetchRequest(url: String) {
