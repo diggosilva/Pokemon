@@ -85,7 +85,6 @@ class DetailsView: UIView {
         labelXp.text = "XP: \(pokemonDetails.experience)"
         labelId.text = "ID: \(pokemonDetails.id)"
         labelName.text = "\(pokemonDetails.name)"
-        print("DIGGO: \(url)")
     }
     
     private func setupView() {
