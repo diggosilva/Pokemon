@@ -113,8 +113,8 @@ extension ListView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         searchBar.resignFirstResponder()
-        let pokemon = viewModel.filteredPokemons[indexPath.row].getId
-        delegate?.goToDetails(id: Int(pokemon))
+        let pokemonId = viewModel.cellForRowAt(indexPath: indexPath).getId
+        delegate?.goToDetails(id: Int(pokemonId))
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
