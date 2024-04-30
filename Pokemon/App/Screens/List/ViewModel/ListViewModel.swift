@@ -51,11 +51,9 @@ class ListViewModel {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let lastRowIndex = tableView.numberOfRows(inSection: 0) - 1
-        if indexPath.row == lastRowIndex && filteredPokemons == pokemons {
-            
-            guard let nextUrl else { return }
-            fetchRequest(url: nextUrl)
-        }
+        
+        guard indexPath.row == lastRowIndex && filteredPokemons == pokemons, let nextUrl else { return } // VIDEO 3
+        fetchRequest(url: nextUrl)
     }
     
     func fetchRequest(url: String) {
