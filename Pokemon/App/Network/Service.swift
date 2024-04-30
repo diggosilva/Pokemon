@@ -51,8 +51,8 @@ class Service: ServiceProtocol {
         dataTask?.resume()
     }
     
-    func getDetails(url: String, onSuccess: @escaping(PokemonDetails) -> Void, onError: @escaping(Error) -> Void) {
-        guard let url = URL(string: url) else { return }
+    func getDetails(id: Int, onSuccess: @escaping(PokemonDetails) -> Void, onError: @escaping(Error) -> Void) {
+        guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon/\(id)") else { return }
         
         dataTask = URLSession.shared.dataTask(with: url, completionHandler: { data, response, error in
             DispatchQueue.main.async {

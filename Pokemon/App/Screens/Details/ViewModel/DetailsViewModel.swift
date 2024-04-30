@@ -14,17 +14,17 @@ enum DetailsViewControllerStates {
 }
 
 class DetailsViewModel {
-    var state: Bindable<DetailsViewControllerStates> = Bindable(value: .loading)
+    private (set) var state: Bindable<DetailsViewControllerStates> = Bindable(value: .loading)
     private var service = Service()
 
-    var id: Int
+    let id: Int
 
     init(id: Int) {
         self.id = id
     }
 
     func loadDataDetails() {
-        service.getDetails(url: "https://pokeapi.co/api/v2/pokemon/\(id)") { pokemonDetails in
+        service.getDetails(id: id) { pokemonDetails in
             self.state.value = .loaded(pokemonDetails)
         } onError: { error in
             self.state.value = .error
