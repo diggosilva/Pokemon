@@ -118,13 +118,13 @@ extension ListView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        viewModel.tableView(tableView, willDisplay: cell, forRowAt: indexPath)
+        viewModel.tableView(forRowAt: indexPath)
     }
 }
 
 extension ListView: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        viewModel.searchBar(searchBar, textDidChange: searchText)
+        viewModel.searchBar(textDidChange: searchText)
         tableView.reloadData()
     }
     
