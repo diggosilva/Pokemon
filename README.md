@@ -9,7 +9,7 @@
     </a>
 </p>
 
-A Swift iOS application written in Swift, that brings a list of pokemons, consuming data from the PokeAPI api. You can search by pokemon name, and by clicking on a pokemon you get its details.
+A iOS application written in Swift, that brings a list of pokemons, consuming data from the PokeAPI api. You can search by pokemon name, and by clicking on a pokemon you get its details.
 
 <p align="left">
     <img src="https://media.giphy.com/media/TTKLaFylOncAkPs1UL/giphy.gif" width="300" max-width="40%" alt="Github"/>
