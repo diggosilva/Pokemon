@@ -25,10 +25,11 @@ A iOS application written in Swift, that brings a list of pokemons, consuming da
 ## Features
 
 - Dark Mode
-- Modern Collection View
+- Modern Table View
 - MVVM
 - View Code (UIKit)
 - Custom elements
+- Pagination
 
 ## Requirements
 
