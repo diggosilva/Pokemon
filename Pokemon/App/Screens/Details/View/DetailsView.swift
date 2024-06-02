@@ -25,7 +25,6 @@ class DetailsView: UIView {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.backgroundColor = .systemIndigo.withAlphaComponent(0.5)
-        imageView.image = UIImage(systemName: "person.fill")?.withTintColor(.systemPink, renderingMode: .alwaysOriginal)
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 8
@@ -62,10 +61,6 @@ class DetailsView: UIView {
         label.textAlignment = textAlignment
         label.numberOfLines = numberOfLines
         return label
-    }
-    
-    private func addSubviews(_ views: [UIView]) {
-        views.forEach({ addSubview($0.self) })
     }
     
     override init(frame: CGRect) {

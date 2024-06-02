@@ -73,10 +73,7 @@ class ListView: UIView {
     }
     
     private func setHierarchy () {
-        addSubview(searchBar)
-        addSubview(tableView)
-        addSubview(spinner)
-        addSubview(labelError)
+        addSubviews([searchBar, tableView, spinner, labelError])
     }
     
     private func setConstraints() {
@@ -88,7 +85,7 @@ class ListView: UIView {
             tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             spinner.centerXAnchor.constraint(equalTo: centerXAnchor),
             spinner.centerYAnchor.constraint(equalTo: centerYAnchor),
