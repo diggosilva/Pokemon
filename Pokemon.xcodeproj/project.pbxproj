@@ -117,36 +117,12 @@
 		92149E992BD094B400B50C7D /* List */ = {
 			isa = PBXGroup;
 			children = (
-				92149E9A2BD094D500B50C7D /* Controller */,
-				92149E9C2BD094EB00B50C7D /* View */,
-				92149E9B2BD094E600B50C7D /* ViewModel */,
-			);
-			path = List;
-			sourceTree = "<group>";
-		};
-		92149E9A2BD094D500B50C7D /* Controller */ = {
-			isa = PBXGroup;
-			children = (
 				926F952F2BD00C7A00E38861 /* ListViewController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		92149E9B2BD094E600B50C7D /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				926F95422BD0355C00E38861 /* ListViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		92149E9C2BD094EB00B50C7D /* View */ = {
-			isa = PBXGroup;
-			children = (
 				92879A832BD152330059348B /* ListView.swift */,
 				92879A852BD152480059348B /* ListCell.swift */,
+				926F95422BD0355C00E38861 /* ListViewModel.swift */,
 			);
-			path = View;
+			path = List;
 			sourceTree = "<group>";
 		};
 		92149E9D2BD0951300B50C7D /* Utils */ = {
@@ -200,35 +176,11 @@
 		92D8E67C2BDD8F8000660A65 /* Details */ = {
 			isa = PBXGroup;
 			children = (
-				92D8E67F2BDD8F8900660A65 /* Controller */,
-				92D8E67E2BDD8F8800660A65 /* View */,
-				92D8E67D2BDD8F8700660A65 /* ViewModel */,
-			);
-			path = Details;
-			sourceTree = "<group>";
-		};
-		92D8E67D2BDD8F8700660A65 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
+				923259022BDE8F6D008BF204 /* DetailsViewController.swift */,
+				923259002BDE8897008BF204 /* DetailsView.swift */,
 				923259042BDE96F1008BF204 /* DetailsViewModel.swift */,
 			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		92D8E67E2BDD8F8800660A65 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				923259002BDE8897008BF204 /* DetailsView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		92D8E67F2BDD8F8900660A65 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				923259022BDE8F6D008BF204 /* DetailsViewController.swift */,
-			);
-			path = Controller;
+			path = Details;
 			sourceTree = "<group>";
 		};
 		D2189D1ADC19427DFA8BC5EB /* Frameworks */ = {
