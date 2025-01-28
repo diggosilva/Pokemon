@@ -29,6 +29,7 @@ class ListViewController: UIViewController {
         let titleView = UIImageView(image: UIImage(named: "logo"))
         titleView.contentMode = .scaleAspectFit
         navigationItem.titleView = titleView
+        navigationItem.hidesBackButton = true
         listView.delegate = self
     }
     
