@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -53,6 +53,10 @@
 		92D8E67A2BDD8F2A00660A65 /* PokemonDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetails.swift; sourceTree = "<group>"; };
 		B4F36B274285788546B332D9 /* Pods-Pokemon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokemon.release.xcconfig"; path = "Target Support Files/Pods-Pokemon/Pods-Pokemon.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		92CDAA8D2D46BFE900245B53 /* MainScreen */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = MainScreen; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		926F95252BD00C7A00E38861 /* Frameworks */ = {
@@ -108,6 +112,7 @@
 		92149E982BD094A500B50C7D /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				92CDAA8D2D46BFE900245B53 /* MainScreen */,
 				92149E992BD094B400B50C7D /* List */,
 				92D8E67C2BDD8F8000660A65 /* Details */,
 			);
@@ -207,6 +212,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				92CDAA8D2D46BFE900245B53 /* MainScreen */,
 			);
 			name = Pokemon;
 			productName = Pokemon;

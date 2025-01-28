@@ -17,6 +17,7 @@ class ListView: UIView {
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchBar.placeholder = "Buscar pokemon..."
         searchBar.showsBookmarkButton = true
+        searchBar.searchBarStyle = .minimal
         searchBar.delegate = self
         return searchBar
     }()
