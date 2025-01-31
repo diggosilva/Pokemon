@@ -11,9 +11,9 @@
 
 A iOS application written in Swift, that brings a list of pokemons, consuming data from the PokeAPI api. You can search by pokemon name, and by clicking on a pokemon you get its details.
 
-<p align="left">
-    <img src="https://media.giphy.com/media/TTKLaFylOncAkPs1UL/giphy.gif" width="300" max-width="40%" alt="Github"/>
-</p> 
+| Feed | Light | Dark |
+| --- | --- | --- |
+| ![Feed](https://github.com/user-attachments/assets/7f0f4983-5882-4287-982b-0b062bddb165) | ![Light](https://github.com/user-attachments/assets/6cb606ba-086b-4f48-a595-a83794016611) | ![Dark](https://github.com/user-attachments/assets/869e58e6-09a7-4dcc-9c16-7d0d57ba9866) |
 
 ## Contents
 
