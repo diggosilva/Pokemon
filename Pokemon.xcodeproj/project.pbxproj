@@ -27,6 +27,8 @@
 		92879A882BD16B410059348B /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92879A872BD16B410059348B /* Service.swift */; };
 		92C906212D5645B7004AB1E1 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C9061F2D5645B7004AB1E1 /* MainScreenViewController.swift */; };
 		92C906252D5649C4004AB1E1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92C906242D5649C4004AB1E1 /* GoogleService-Info.plist */; };
+		92C9062D2D5655AC004AB1E1 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C9062C2D5655AC004AB1E1 /* SignupViewController.swift */; };
+		92C906672D5669FB004AB1E1 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C906662D5669FB004AB1E1 /* SignupView.swift */; };
 		92D8E67B2BDD8F2A00660A65 /* PokemonDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D8E67A2BDD8F2A00660A65 /* PokemonDetails.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +56,8 @@
 		92879A872BD16B410059348B /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		92C9061F2D5645B7004AB1E1 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		92C906242D5649C4004AB1E1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		92C9062C2D5655AC004AB1E1 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		92C906662D5669FB004AB1E1 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		92D8E67A2BDD8F2A00660A65 /* PokemonDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetails.swift; sourceTree = "<group>"; };
 		B4F36B274285788546B332D9 /* Pods-Pokemon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokemon.release.xcconfig"; path = "Target Support Files/Pods-Pokemon/Pods-Pokemon.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,6 +116,7 @@
 		92149E982BD094A500B50C7D /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				92C9062B2D564CEB004AB1E1 /* Authentication */,
 				92C906202D5645B7004AB1E1 /* MainScreen */,
 				92149E992BD094B400B50C7D /* List */,
 				92D8E67C2BDD8F8000660A65 /* Details */,
@@ -185,6 +190,31 @@
 				92C9061F2D5645B7004AB1E1 /* MainScreenViewController.swift */,
 			);
 			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		92C906292D564CEB004AB1E1 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		92C9062A2D564CEB004AB1E1 /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+				92C906662D5669FB004AB1E1 /* SignupView.swift */,
+				92C9062C2D5655AC004AB1E1 /* SignupViewController.swift */,
+			);
+			path = Signup;
+			sourceTree = "<group>";
+		};
+		92C9062B2D564CEB004AB1E1 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				92C906292D564CEB004AB1E1 /* Login */,
+				92C9062A2D564CEB004AB1E1 /* Signup */,
+			);
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 		92D8E67C2BDD8F8000660A65 /* Details */ = {
@@ -320,9 +350,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92C9062D2D5655AC004AB1E1 /* SignupViewController.swift in Sources */,
 				926F95452BD0356900E38861 /* Bindable.swift in Sources */,
 				92C906212D5645B7004AB1E1 /* MainScreenViewController.swift in Sources */,
 				92879A882BD16B410059348B /* Service.swift in Sources */,
+				92C906672D5669FB004AB1E1 /* SignupView.swift in Sources */,
 				9226A0E92BD1AB340061ED06 /* PokemonResponse.swift in Sources */,
 				92D8E67B2BDD8F2A00660A65 /* PokemonDetails.swift in Sources */,
 				926F95302BD00C7A00E38861 /* ListViewController.swift in Sources */,
