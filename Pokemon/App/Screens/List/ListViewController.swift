@@ -9,8 +9,8 @@ import UIKit
 
 class ListViewController: UIViewController {
     
+    lazy var listView = ListView()
     lazy var viewModel = ListViewModel()
-    lazy var listView = ListView(viewModel: viewModel)
     
     override func loadView() {
         super.loadView()
@@ -20,6 +20,7 @@ class ListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavBar()
+        setDelegatesAndDataSources()
         handleStates()
         viewModel.loadDataPokemons()
     }
@@ -30,6 +31,12 @@ class ListViewController: UIViewController {
         titleView.contentMode = .scaleAspectFit
         navigationItem.titleView = titleView
         navigationItem.hidesBackButton = true
+        listView.delegate = self
+    }
+    
+    private func setDelegatesAndDataSources() {
+        listView.tableView.delegate = self
+        listView.tableView.dataSource = self
         listView.delegate = self
     }
     
@@ -68,6 +75,42 @@ class ListViewController: UIViewController {
         alert.addAction(ok)
         alert.addAction(nok)
         present(alert, animated: true)
+    }
+}
+
+extension ListViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.numberOfRows()
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ListCell.identifier, for: indexPath) as? ListCell else { return UITableViewCell() }
+        cell.configure(pokemon: viewModel.cellForRowAt(indexPath: indexPath))
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        listView.searchBar.resignFirstResponder()
+        let selectedPokemon = viewModel.cellForRowAt(indexPath: indexPath)
+        
+        let detailVC = DetailsViewController(id: selectedPokemon.getId)
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        viewModel.tableView(forRowAt: indexPath)
+    }
+}
+
+extension ListViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        viewModel.searchBar(textDidChange: searchText)
+        listView.tableView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 }
 
