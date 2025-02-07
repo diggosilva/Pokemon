@@ -14,7 +14,7 @@ enum ListViewControllerStates {
 }
 
 class ListViewModel {
-    private (set) var state: Bindable<ListViewControllerStates> = Bindable(value: .loading)
+    private(set) var state: Bindable<ListViewControllerStates> = Bindable(value: .loading)
     private var service = Service()
     
     private var nextUrl: String?
