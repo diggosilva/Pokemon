@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -25,6 +25,7 @@
 		92879A842BD152330059348B /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92879A832BD152330059348B /* ListView.swift */; };
 		92879A862BD152490059348B /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92879A852BD152480059348B /* ListCell.swift */; };
 		92879A882BD16B410059348B /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92879A872BD16B410059348B /* Service.swift */; };
+		92C906212D5645B7004AB1E1 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C9061F2D5645B7004AB1E1 /* MainScreenViewController.swift */; };
 		92D8E67B2BDD8F2A00660A65 /* PokemonDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D8E67A2BDD8F2A00660A65 /* PokemonDetails.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,13 +51,10 @@
 		92879A832BD152330059348B /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		92879A852BD152480059348B /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		92879A872BD16B410059348B /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		92C9061F2D5645B7004AB1E1 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		92D8E67A2BDD8F2A00660A65 /* PokemonDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetails.swift; sourceTree = "<group>"; };
 		B4F36B274285788546B332D9 /* Pods-Pokemon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokemon.release.xcconfig"; path = "Target Support Files/Pods-Pokemon/Pods-Pokemon.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		92CDAA8D2D46BFE900245B53 /* MainScreen */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = MainScreen; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		926F95252BD00C7A00E38861 /* Frameworks */ = {
@@ -112,7 +110,7 @@
 		92149E982BD094A500B50C7D /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				92CDAA8D2D46BFE900245B53 /* MainScreen */,
+				92C906202D5645B7004AB1E1 /* MainScreen */,
 				92149E992BD094B400B50C7D /* List */,
 				92D8E67C2BDD8F8000660A65 /* Details */,
 			);
@@ -178,6 +176,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		92C906202D5645B7004AB1E1 /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				92C9061F2D5645B7004AB1E1 /* MainScreenViewController.swift */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
 		92D8E67C2BDD8F8000660A65 /* Details */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,9 +218,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				92CDAA8D2D46BFE900245B53 /* MainScreen */,
 			);
 			name = Pokemon;
 			productName = Pokemon;
@@ -314,6 +317,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				926F95452BD0356900E38861 /* Bindable.swift in Sources */,
+				92C906212D5645B7004AB1E1 /* MainScreenViewController.swift in Sources */,
 				92879A882BD16B410059348B /* Service.swift in Sources */,
 				9226A0E92BD1AB340061ED06 /* PokemonResponse.swift in Sources */,
 				92D8E67B2BDD8F2A00660A65 /* PokemonDetails.swift in Sources */,
