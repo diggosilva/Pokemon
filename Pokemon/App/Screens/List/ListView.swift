@@ -18,7 +18,6 @@ class ListView: UIView {
         searchBar.placeholder = "Buscar pokemon..."
         searchBar.showsBookmarkButton = true
         searchBar.searchBarStyle = .minimal
-        searchBar.delegate = self
         return searchBar
     }()
     
@@ -33,8 +32,6 @@ class ListView: UIView {
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.delegate = self
-        tableView.dataSource = self
         tableView.register(ListCell.self, forCellReuseIdentifier: ListCell.identifier)
         tableView.backgroundColor = UIColor.systemIndigo.withAlphaComponent(0.5)
         tableView.separatorStyle = .none
@@ -56,10 +53,8 @@ class ListView: UIView {
     }()
     
     weak var delegate: ListViewDelegate?
-    let viewModel: ListViewModel
     
-    init(viewModel: ListViewModel) {
-        self.viewModel = viewModel
+    override init(frame: CGRect) {
         super.init(frame: .zero)
         setupView()
     }
@@ -94,38 +89,5 @@ class ListView: UIView {
             labelError.centerXAnchor.constraint(equalTo: centerXAnchor),
             labelError.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
-    }
-}
-
-extension ListView: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRows()
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ListCell.identifier, for: indexPath) as? ListCell else { return UITableViewCell() }
-        cell.configure(pokemon: viewModel.cellForRowAt(indexPath: indexPath))
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        searchBar.resignFirstResponder()
-        delegate?.goToDetails(indexPath: indexPath)
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        viewModel.tableView(forRowAt: indexPath)
-    }
-}
-
-extension ListView: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        viewModel.searchBar(textDidChange: searchText)
-        tableView.reloadData()
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
     }
 }
