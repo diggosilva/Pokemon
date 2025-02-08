@@ -72,6 +72,7 @@ class SignupViewController: UIViewController {
 
 extension SignupViewController: SignupViewDelegate {
     func signupButton() {
+        setupSignupButtonWhenTapped()
         guard let email = signupView.emailTextField.text, !email.trimmingCharacters(in: .whitespaces).isEmpty else {
             showAlertError(title: "Erro no email", message: "Digite um email válido!")
             signupView.emailTextField.text = ""
@@ -80,7 +81,6 @@ extension SignupViewController: SignupViewDelegate {
         
         guard let password = signupView.passwordTextField.text, !password.trimmingCharacters(in: .whitespaces).isEmpty else {
             showAlertError(title: "Erro na senha", message: "Digite uma senha válida!")
-            signupView.passwordTextField.text = ""
             return
         }
         
@@ -101,6 +101,6 @@ extension SignupViewController: SignupViewDelegate {
     }
     
     func loginButton() {
-        print("Voltar pra tela de Login")
+        navigationController?.popToRootViewController(animated: true)
     }
 }

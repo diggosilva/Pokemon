@@ -55,7 +55,7 @@ extension UIView {
     }
     
     func buildSpinner() -> UIActivityIndicatorView {
-        let spinner = UIActivityIndicatorView(style: .large)
+        let spinner = UIActivityIndicatorView()
         spinner.translatesAutoresizingMaskIntoConstraints = false
         spinner.color = .white
         return spinner

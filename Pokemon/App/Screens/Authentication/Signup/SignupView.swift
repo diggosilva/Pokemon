@@ -72,10 +72,14 @@ class SignupView: UIView {
             signupButton.topAnchor.constraint(equalTo: confirmPasswordTextField.bottomAnchor, constant: padding),
             signupButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
             signupButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+            signupButton.heightAnchor.constraint(equalToConstant: 35),
             
             loginButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -padding),
             loginButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
             loginButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+            
+            spinner.centerXAnchor.constraint(equalTo: signupButton.centerXAnchor),
+            spinner.centerYAnchor.constraint(equalTo: signupButton.centerYAnchor),
         ])
     }
 }

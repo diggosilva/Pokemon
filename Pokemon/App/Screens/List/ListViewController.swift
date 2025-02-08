@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ListViewController: UIViewController {
     
@@ -31,7 +32,19 @@ class ListViewController: UIViewController {
         titleView.contentMode = .scaleAspectFit
         navigationItem.titleView = titleView
         navigationItem.hidesBackButton = true
-        listView.delegate = self
+        let barButton = UIBarButtonItem(title: "Logout", style: .done, target: self, action: #selector(logoutButtonTapped))
+        barButton.tintColor = .systemRed
+        navigationItem.rightBarButtonItem = barButton
+    }
+    
+    @objc func logoutButtonTapped() {
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            navigationController?.popToRootViewController(animated: true)
+        } catch let signOutError as NSError {
+            print("Erro ao tentar deslogar: \(signOutError)")
+        }
     }
     
     private func setDelegatesAndDataSources() {
