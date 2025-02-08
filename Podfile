@@ -7,4 +7,6 @@ target 'Pokemon' do
 
   # Pods for Pokemon
     pod 'SDWebImage', '~> 5.0'
+    pod 'FirebaseAuth'
+    pod 'FirebaseFirestore'
 end
