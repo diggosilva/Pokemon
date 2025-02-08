@@ -29,6 +29,8 @@
 		92C906252D5649C4004AB1E1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92C906242D5649C4004AB1E1 /* GoogleService-Info.plist */; };
 		92C9062D2D5655AC004AB1E1 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C9062C2D5655AC004AB1E1 /* SignupViewController.swift */; };
 		92C906672D5669FB004AB1E1 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C906662D5669FB004AB1E1 /* SignupView.swift */; };
+		92C9068B2D5695DA004AB1E1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C9068A2D5695DA004AB1E1 /* LoginViewController.swift */; };
+		92C9068D2D569687004AB1E1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C9068C2D569687004AB1E1 /* LoginView.swift */; };
 		92D8E67B2BDD8F2A00660A65 /* PokemonDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D8E67A2BDD8F2A00660A65 /* PokemonDetails.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +60,8 @@
 		92C906242D5649C4004AB1E1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		92C9062C2D5655AC004AB1E1 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		92C906662D5669FB004AB1E1 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
+		92C9068A2D5695DA004AB1E1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		92C9068C2D569687004AB1E1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		92D8E67A2BDD8F2A00660A65 /* PokemonDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetails.swift; sourceTree = "<group>"; };
 		B4F36B274285788546B332D9 /* Pods-Pokemon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokemon.release.xcconfig"; path = "Target Support Files/Pods-Pokemon/Pods-Pokemon.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -195,6 +199,8 @@
 		92C906292D564CEB004AB1E1 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				92C9068A2D5695DA004AB1E1 /* LoginViewController.swift */,
+				92C9068C2D569687004AB1E1 /* LoginView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -358,12 +364,14 @@
 				9226A0E92BD1AB340061ED06 /* PokemonResponse.swift in Sources */,
 				92D8E67B2BDD8F2A00660A65 /* PokemonDetails.swift in Sources */,
 				926F95302BD00C7A00E38861 /* ListViewController.swift in Sources */,
+				92C9068B2D5695DA004AB1E1 /* LoginViewController.swift in Sources */,
 				923259012BDE8897008BF204 /* DetailsView.swift in Sources */,
 				923259072BDEDF6C008BF204 /* PokemonDetailsResponse.swift in Sources */,
 				92879A842BD152330059348B /* ListView.swift in Sources */,
 				92879A862BD152490059348B /* ListCell.swift in Sources */,
 				926F952C2BD00C7A00E38861 /* AppDelegate.swift in Sources */,
 				926F952E2BD00C7A00E38861 /* SceneDelegate.swift in Sources */,
+				92C9068D2D569687004AB1E1 /* LoginView.swift in Sources */,
 				924DAD5D2C0CF14900F38B22 /* Extensions.swift in Sources */,
 				9226A0EB2BD1AB870061ED06 /* PokemonFeed.swift in Sources */,
 				923259052BDE96F1008BF204 /* DetailsViewModel.swift in Sources */,

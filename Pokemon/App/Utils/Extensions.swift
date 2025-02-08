@@ -54,10 +54,11 @@ extension UIView {
         return btn
     }
     
-    func buildSpinner() -> UIActivityIndicatorView {
+    func buildSpinner(style: UIActivityIndicatorView.Style = .medium, color: UIColor = .white) -> UIActivityIndicatorView {
         let spinner = UIActivityIndicatorView()
         spinner.translatesAutoresizingMaskIntoConstraints = false
-        spinner.color = .white
+        spinner.style = style
+        spinner.color = color
         return spinner
     }
 }

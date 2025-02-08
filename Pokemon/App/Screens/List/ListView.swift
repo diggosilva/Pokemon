@@ -16,17 +16,8 @@ class ListView: UIView {
         let searchBar = UISearchBar()
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchBar.placeholder = "Buscar pokemon..."
-        searchBar.showsBookmarkButton = true
         searchBar.searchBarStyle = .minimal
         return searchBar
-    }()
-    
-    lazy var spinner: UIActivityIndicatorView = {
-        let spinner = UIActivityIndicatorView(style: .large)
-        spinner.translatesAutoresizingMaskIntoConstraints = false
-        spinner.startAnimating()
-        spinner.color = .systemIndigo
-        return spinner
     }()
     
     lazy var tableView: UITableView = {
@@ -37,6 +28,30 @@ class ListView: UIView {
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         return tableView
+    }()
+    
+    lazy var spinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(style: .large)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.startAnimating()
+        spinner.color = .systemIndigo
+        return spinner
+    }()
+    
+    var email: String = "" {
+        didSet {
+            emailLabel.text = "Logado com o email: \(email)"
+        }
+    }
+    
+    lazy var emailLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .systemGreen
+        label.font = .systemFont(ofSize: 10, weight: .semibold)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.75
+        return label
     }()
     
     lazy var labelError: UILabel = {
@@ -69,7 +84,7 @@ class ListView: UIView {
     }
     
     private func setHierarchy () {
-        addSubviews([searchBar, tableView, spinner, labelError])
+        addSubviews([searchBar, emailLabel, tableView, spinner, labelError])
     }
     
     private func setConstraints() {
@@ -78,7 +93,11 @@ class ListView: UIView {
             searchBar.leadingAnchor.constraint(equalTo: leadingAnchor),
             searchBar.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
+            emailLabel.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
+            emailLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            emailLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            
+            tableView.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 10),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor),

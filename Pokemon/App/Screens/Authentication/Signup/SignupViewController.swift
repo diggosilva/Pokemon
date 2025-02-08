@@ -23,8 +23,13 @@ class SignupViewController: UIViewController {
         setDelegatesAndDataSources()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
     private func setNavBar() {
-        title = "Cadastro"
+        title = "CADASTRO"
+        navigationItem.hidesBackButton = true
     }
     
     private func setDelegatesAndDataSources() {
@@ -45,7 +50,7 @@ class SignupViewController: UIViewController {
         let ok = UIAlertAction(title: "Ok", style: .default) { action in
             do {
                 try Auth.auth().signOut()
-                // Voltar pra tela de Login
+                self.navigationController?.popToRootViewController(animated: true)
             } catch {
                 self.showAlertError(title: "Erro ao fazer logout", message: error.localizedDescription)
             }
@@ -86,8 +91,7 @@ extension SignupViewController: SignupViewDelegate {
             return
         }
         
-        let firebaseAuth = Auth.auth()
-        firebaseAuth.createUser(withEmail: email, password: password) { authResult, error in
+        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if let error = error {
                 self.showAlertError(title: "Erro no cadastro!", message: "Erro ao cadastrar usuário: \(error.localizedDescription)")
             } else {
@@ -97,6 +101,6 @@ extension SignupViewController: SignupViewDelegate {
     }
     
     func loginButtonTapped() {
-        print("Voltar pra tela de Login")
+        navigationController?.popToRootViewController(animated: true)
     }
 }
