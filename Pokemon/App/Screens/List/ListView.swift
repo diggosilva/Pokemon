@@ -21,13 +21,22 @@ class ListView: UIView {
         return searchBar
     }()
     
-    lazy var spinner: UIActivityIndicatorView = {
-        let spinner = UIActivityIndicatorView(style: .large)
-        spinner.translatesAutoresizingMaskIntoConstraints = false
-        spinner.startAnimating()
-        spinner.color = .systemIndigo
-        return spinner
+    lazy var emailLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Logado com email: "
+        label.textColor = .systemGreen
+        label.font = .systemFont(ofSize: 10, weight: .semibold)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.75
+        return label
     }()
+    
+    var email: String = ""{
+        didSet {
+            emailLabel.text = "Logado com email: \(email)"
+        }
+    }
     
     lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -37,6 +46,14 @@ class ListView: UIView {
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         return tableView
+    }()
+    
+    lazy var spinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(style: .large)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.startAnimating()
+        spinner.color = .systemIndigo
+        return spinner
     }()
     
     lazy var labelError: UILabel = {
@@ -69,16 +86,21 @@ class ListView: UIView {
     }
     
     private func setHierarchy () {
-        addSubviews([searchBar, tableView, spinner, labelError])
+        addSubviews([searchBar, emailLabel, tableView, spinner, labelError])
     }
     
     private func setConstraints() {
+        let padding: CGFloat = 20
         NSLayoutConstraint.activate([
             searchBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             searchBar.leadingAnchor.constraint(equalTo: leadingAnchor),
             searchBar.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
+            emailLabel.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
+            emailLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+            emailLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+            
+            tableView.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: padding / 2),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor),

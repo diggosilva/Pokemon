@@ -25,6 +25,9 @@
 		92879A842BD152330059348B /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92879A832BD152330059348B /* ListView.swift */; };
 		92879A862BD152490059348B /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92879A852BD152480059348B /* ListCell.swift */; };
 		92879A882BD16B410059348B /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92879A872BD16B410059348B /* Service.swift */; };
+		9291C9CF2D57C38300AAD1DA /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9291C9CE2D57C38300AAD1DA /* SignupViewController.swift */; };
+		9291C9D12D57CC6F00AAD1DA /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9291C9D02D57CC6F00AAD1DA /* SignupView.swift */; };
+		9291C9D32D57D0D800AAD1DA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9291C9D22D57D0D800AAD1DA /* LoginViewController.swift */; };
 		92B17AB52D57C05700C4C1CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92B17AB42D57C05700C4C1CE /* GoogleService-Info.plist */; };
 		92C906212D5645B7004AB1E1 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C9061F2D5645B7004AB1E1 /* MainScreenViewController.swift */; };
 		92D8E67B2BDD8F2A00660A65 /* PokemonDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D8E67A2BDD8F2A00660A65 /* PokemonDetails.swift */; };
@@ -52,6 +55,9 @@
 		92879A832BD152330059348B /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		92879A852BD152480059348B /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		92879A872BD16B410059348B /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		9291C9CE2D57C38300AAD1DA /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		9291C9D02D57CC6F00AAD1DA /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
+		9291C9D22D57D0D800AAD1DA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		92B17AB42D57C05700C4C1CE /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		92C9061F2D5645B7004AB1E1 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		92D8E67A2BDD8F2A00660A65 /* PokemonDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetails.swift; sourceTree = "<group>"; };
@@ -112,6 +118,7 @@
 		92149E982BD094A500B50C7D /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				9291C9CD2D57C35C00AAD1DA /* Authentication */,
 				92C906202D5645B7004AB1E1 /* MainScreen */,
 				92149E992BD094B400B50C7D /* List */,
 				92D8E67C2BDD8F8000660A65 /* Details */,
@@ -177,6 +184,32 @@
 				926F95392BD00C7B00E38861 /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		9291C9CB2D57C35C00AAD1DA /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				9291C9D22D57D0D800AAD1DA /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		9291C9CC2D57C35C00AAD1DA /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+				9291C9D02D57CC6F00AAD1DA /* SignupView.swift */,
+				9291C9CE2D57C38300AAD1DA /* SignupViewController.swift */,
+			);
+			path = Signup;
+			sourceTree = "<group>";
+		};
+		9291C9CD2D57C35C00AAD1DA /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				9291C9CB2D57C35C00AAD1DA /* Login */,
+				9291C9CC2D57C35C00AAD1DA /* Signup */,
+			);
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 		92C906202D5645B7004AB1E1 /* MainScreen */ = {
@@ -320,12 +353,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9291C9D12D57CC6F00AAD1DA /* SignupView.swift in Sources */,
+				9291C9CF2D57C38300AAD1DA /* SignupViewController.swift in Sources */,
 				926F95452BD0356900E38861 /* Bindable.swift in Sources */,
 				92C906212D5645B7004AB1E1 /* MainScreenViewController.swift in Sources */,
 				92879A882BD16B410059348B /* Service.swift in Sources */,
 				9226A0E92BD1AB340061ED06 /* PokemonResponse.swift in Sources */,
 				92D8E67B2BDD8F2A00660A65 /* PokemonDetails.swift in Sources */,
 				926F95302BD00C7A00E38861 /* ListViewController.swift in Sources */,
+				9291C9D32D57D0D800AAD1DA /* LoginViewController.swift in Sources */,
 				923259012BDE8897008BF204 /* DetailsView.swift in Sources */,
 				923259072BDEDF6C008BF204 /* PokemonDetailsResponse.swift in Sources */,
 				92879A842BD152330059348B /* ListView.swift in Sources */,
