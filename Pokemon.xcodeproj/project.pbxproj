@@ -25,6 +25,7 @@
 		92879A842BD152330059348B /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92879A832BD152330059348B /* ListView.swift */; };
 		92879A862BD152490059348B /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92879A852BD152480059348B /* ListCell.swift */; };
 		92879A882BD16B410059348B /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92879A872BD16B410059348B /* Service.swift */; };
+		92B17AB52D57C05700C4C1CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92B17AB42D57C05700C4C1CE /* GoogleService-Info.plist */; };
 		92C906212D5645B7004AB1E1 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C9061F2D5645B7004AB1E1 /* MainScreenViewController.swift */; };
 		92D8E67B2BDD8F2A00660A65 /* PokemonDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D8E67A2BDD8F2A00660A65 /* PokemonDetails.swift */; };
 /* End PBXBuildFile section */
@@ -51,6 +52,7 @@
 		92879A832BD152330059348B /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		92879A852BD152480059348B /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		92879A872BD16B410059348B /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		92B17AB42D57C05700C4C1CE /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		92C9061F2D5645B7004AB1E1 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		92D8E67A2BDD8F2A00660A65 /* PokemonDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetails.swift; sourceTree = "<group>"; };
 		B4F36B274285788546B332D9 /* Pods-Pokemon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokemon.release.xcconfig"; path = "Target Support Files/Pods-Pokemon/Pods-Pokemon.release.xcconfig"; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			children = (
 				92149E952BD0949500B50C7D /* App */,
 				926F953F2BD00CE700E38861 /* Resources */,
+				92B17AB42D57C05700C4C1CE /* GoogleService-Info.plist */,
 			);
 			path = Pokemon;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 			files = (
 				926F95382BD00C7B00E38861 /* LaunchScreen.storyboard in Resources */,
 				926F95352BD00C7B00E38861 /* Assets.xcassets in Resources */,
+				92B17AB52D57C05700C4C1CE /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
