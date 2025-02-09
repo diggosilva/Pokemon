@@ -10,9 +10,11 @@ import FirebaseAuth
 
 class ListViewController: UIViewController {
     
+    // MARK: - Properties
     lazy var listView = ListView()
     lazy var viewModel = ListViewModel()
     
+    // MARK: - Lifecycle
     override func loadView() {
         super.loadView()
         view = listView
@@ -26,6 +28,7 @@ class ListViewController: UIViewController {
         viewModel.loadDataPokemons()
     }
     
+    // MARK: - Configuration
     private func setNavBar() {
         view.backgroundColor = .systemBackground
         let titleView = UIImageView(image: UIImage(named: "logo"))
@@ -37,6 +40,13 @@ class ListViewController: UIViewController {
         navigationItem.rightBarButtonItem = barButton
     }
     
+    private func setDelegatesAndDataSources() {
+        listView.tableView.delegate = self
+        listView.tableView.dataSource = self
+        listView.delegate = self
+    }
+    
+    // MARK: - Actions
     @objc func logoutButtonTapped() {
         let firebaseAuth = Auth.auth()
         do {
@@ -47,12 +57,7 @@ class ListViewController: UIViewController {
         }
     }
     
-    private func setDelegatesAndDataSources() {
-        listView.tableView.delegate = self
-        listView.tableView.dataSource = self
-        listView.delegate = self
-    }
-    
+    // MARK: - Methods
     private func handleStates() {
         viewModel.state.bind { states in
             switch states {
@@ -75,6 +80,7 @@ class ListViewController: UIViewController {
         listView.tableView.reloadData()
     }
     
+    // MARK: - Alerts
     private func showErrorState() {
         let alert = UIAlertController(title: "Opa, Ocorreu um erro!", message: "Tentar novamente?", preferredStyle: .alert)
         let ok = UIAlertAction(title: "Sim", style: .default) { action in
@@ -91,6 +97,7 @@ class ListViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDelegate, UITableViewDataSource
 extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRows()
@@ -116,6 +123,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+// MARK: - UISearchBarDelegate
 extension ListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         viewModel.searchBar(textDidChange: searchText)
@@ -127,6 +135,7 @@ extension ListViewController: UISearchBarDelegate {
     }
 }
 
+// MARK: - ListViewDelegate
 extension ListViewController: ListViewDelegate {
     func goToDetails(indexPath: IndexPath) {
         let pokemonId = viewModel.cellForRowAt(indexPath: indexPath).getId
