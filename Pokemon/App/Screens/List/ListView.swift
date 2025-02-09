@@ -12,6 +12,8 @@ protocol ListViewDelegate: AnyObject {
 }
 
 class ListView: UIView {
+    
+    // MARK: - Properties
     lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.translatesAutoresizingMaskIntoConstraints = false
@@ -32,7 +34,7 @@ class ListView: UIView {
         return label
     }()
     
-    var email: String = ""{
+    var email: String = "" {
         didSet {
             emailLabel.text = "Logado com email: \(email)"
         }
@@ -71,6 +73,7 @@ class ListView: UIView {
     
     weak var delegate: ListViewDelegate?
     
+    // MARK: - Initializers
     override init(frame: CGRect) {
         super.init(frame: .zero)
         setupView()
@@ -80,6 +83,7 @@ class ListView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - UI Configuration
     private func setupView() {
         setHierarchy()
         setConstraints()

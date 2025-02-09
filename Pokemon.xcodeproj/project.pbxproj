@@ -29,8 +29,8 @@
 		9291C9D12D57CC6F00AAD1DA /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9291C9D02D57CC6F00AAD1DA /* SignupView.swift */; };
 		9291C9D32D57D0D800AAD1DA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9291C9D22D57D0D800AAD1DA /* LoginViewController.swift */; };
 		92B17AB52D57C05700C4C1CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 92B17AB42D57C05700C4C1CE /* GoogleService-Info.plist */; };
-		92C906212D5645B7004AB1E1 /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C9061F2D5645B7004AB1E1 /* MainScreenViewController.swift */; };
 		92D8E67B2BDD8F2A00660A65 /* PokemonDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D8E67A2BDD8F2A00660A65 /* PokemonDetails.swift */; };
+		92FAC7A52D58D4A8000B393D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FAC7A42D58D4A8000B393D /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,8 +59,8 @@
 		9291C9D02D57CC6F00AAD1DA /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		9291C9D22D57D0D800AAD1DA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		92B17AB42D57C05700C4C1CE /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		92C9061F2D5645B7004AB1E1 /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		92D8E67A2BDD8F2A00660A65 /* PokemonDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetails.swift; sourceTree = "<group>"; };
+		92FAC7A42D58D4A8000B393D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B4F36B274285788546B332D9 /* Pods-Pokemon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokemon.release.xcconfig"; path = "Target Support Files/Pods-Pokemon/Pods-Pokemon.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,7 +119,6 @@
 			isa = PBXGroup;
 			children = (
 				9291C9CD2D57C35C00AAD1DA /* Authentication */,
-				92C906202D5645B7004AB1E1 /* MainScreen */,
 				92149E992BD094B400B50C7D /* List */,
 				92D8E67C2BDD8F8000660A65 /* Details */,
 			);
@@ -189,6 +188,7 @@
 		9291C9CB2D57C35C00AAD1DA /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				92FAC7A42D58D4A8000B393D /* LoginView.swift */,
 				9291C9D22D57D0D800AAD1DA /* LoginViewController.swift */,
 			);
 			path = Login;
@@ -210,14 +210,6 @@
 				9291C9CC2D57C35C00AAD1DA /* Signup */,
 			);
 			path = Authentication;
-			sourceTree = "<group>";
-		};
-		92C906202D5645B7004AB1E1 /* MainScreen */ = {
-			isa = PBXGroup;
-			children = (
-				92C9061F2D5645B7004AB1E1 /* MainScreenViewController.swift */,
-			);
-			path = MainScreen;
 			sourceTree = "<group>";
 		};
 		92D8E67C2BDD8F8000660A65 /* Details */ = {
@@ -356,7 +348,6 @@
 				9291C9D12D57CC6F00AAD1DA /* SignupView.swift in Sources */,
 				9291C9CF2D57C38300AAD1DA /* SignupViewController.swift in Sources */,
 				926F95452BD0356900E38861 /* Bindable.swift in Sources */,
-				92C906212D5645B7004AB1E1 /* MainScreenViewController.swift in Sources */,
 				92879A882BD16B410059348B /* Service.swift in Sources */,
 				9226A0E92BD1AB340061ED06 /* PokemonResponse.swift in Sources */,
 				92D8E67B2BDD8F2A00660A65 /* PokemonDetails.swift in Sources */,
@@ -372,6 +363,7 @@
 				9226A0EB2BD1AB870061ED06 /* PokemonFeed.swift in Sources */,
 				923259052BDE96F1008BF204 /* DetailsViewModel.swift in Sources */,
 				923259032BDE8F6D008BF204 /* DetailsViewController.swift in Sources */,
+				92FAC7A52D58D4A8000B393D /* LoginView.swift in Sources */,
 				926F95432BD0355C00E38861 /* ListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

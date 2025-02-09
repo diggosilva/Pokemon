@@ -10,8 +10,10 @@ import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
+    // MARK: - Properties
     let loginView = LoginView()
     
+    // MARK: - Lifecycle
     override func loadView() {
         super.loadView()
         view = loginView
@@ -34,6 +36,7 @@ class LoginViewController: UIViewController {
         view.endEditing(true)
     }
     
+    // MARK: - Configuration
     private func setNavBar() {
         title = "LOGIN"
     }
@@ -57,6 +60,7 @@ class LoginViewController: UIViewController {
         loginView.passwordTextField.text = ""
     }
     
+    // MARK: - Alerts
     private func showAlertError(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let ok = UIAlertAction(title: "Ok", style: .default) { action in
@@ -66,6 +70,7 @@ class LoginViewController: UIViewController {
         present(alert, animated: true)
     }
     
+    // MARK: - UI Updates
     private func setupLoginButtonWhenTapped(setTitle: String = "", startAnimating: Bool = true) {
         if startAnimating {
             loginView.loginButton.setTitle(setTitle, for: .normal)
@@ -77,31 +82,45 @@ class LoginViewController: UIViewController {
     }
 }
 
+// MARK: - LoginViewDelegate
 extension LoginViewController: LoginViewDelegate {
     func loginButton() {
         setupLoginButtonWhenTapped()
+        
         guard let email = loginView.emailTextField.text, !email.trimmingCharacters(in: .whitespaces).isEmpty else {
-            showAlertError(title: "Erro no email", message: "Digite um email válido!")
+            showAlertError(title: "Erro no email", message: LoginError.invalidEmail.localizedDescription)
             loginView.emailTextField.text = ""
             return
         }
         
-        guard let password = loginView.passwordTextField.text, !password.trimmingCharacters(in: .whitespaces).isEmpty else {
-            showAlertError(title: "Erro na senha", message: "Digite uma senha válida!")
+        // Verificando se o email tem formato válido
+        if !isValidEmail(email) {
+            showAlertError(title: "Erro no email", message: LoginError.invalidEmail.localizedDescription)
             return
         }
         
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authresult, error in
+        guard let password = loginView.passwordTextField.text, !password.trimmingCharacters(in: .whitespaces).isEmpty else {
+            showAlertError(title: "Erro na senha", message: LoginError.invalidPassword.localizedDescription)
+            return
+        }
+        
+        // Verificando se a senha tem o tamanho mínimo
+        if password.count < 6 {
+            showAlertError(title: "Erro na senha", message: LoginError.invalidPassword.localizedDescription)
+            return
+        }
+        
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
             guard let self = self else { return }
             
-            if let error = error {
-                self.showAlertError(title: "Erro no Login", message: "Erro ao realizar o login: \(error.localizedDescription)")
+            if error != nil {
+                self.showAlertError(title: "Erro no Login", message: "\(LoginError.loginFailed.localizedDescription)")
                 return
             } else {
                 if let email = Auth.auth().currentUser?.email {
                     let listVC = ListViewController()
                     listVC.listView.email = email
-                    navigationController?.pushViewController(listVC, animated: true)
+                    self.navigationController?.pushViewController(listVC, animated: true)
                 }
             }
         }
@@ -111,76 +130,21 @@ extension LoginViewController: LoginViewDelegate {
         let signupVC = SignupViewController()
         navigationController?.pushViewController(signupVC, animated: true)
     }
+    
+    // Função para validar formato de email
+    private func isValidEmail(_ email: String) -> Bool {
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+        return emailTest.evaluate(with: email)
+    }
 }
 
-protocol LoginViewDelegate: AnyObject {
-    func loginButton()
-    func signupButton()
-}
-
-class LoginView: UIView {
+enum LoginError: String, Error {
+    case invalidEmail = "Digite um email válido! Ex: exemplo@dominio.com"
+    case invalidPassword = "A senha deve ter pelo menos 6 caracteres."
+    case loginFailed = "Falha na autenticação. Por favor, verifique suas credenciais."
     
-    lazy var logoImage = buildLogoImage()
-    lazy var emailTextField = buildTextfield(placeholder: "Email")
-    lazy var passwordTextField = buildTextfield(placeholder: "Senha", keyboardType: .default, isSecureTextEntry: true)
-    lazy var loginButton = buildButton(title: "Logar", color: .link, selector: #selector(loginButtonTapped))
-    lazy var signupButton = buildButtonWith2Texts(title1: "Não tem uma conta?  ", title2: "Cadastre-se!", selector: #selector(signupButtonTapped))
-    lazy var spinner = buildSpinner()
-    
-    weak var delegate: LoginViewDelegate?
-    
-    override init(frame: CGRect) {
-        super.init(frame: .zero)
-        setupView()
-    }
-    
-    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-    
-    @objc func loginButtonTapped() {
-        delegate?.loginButton()
-    }
-    
-    @objc func signupButtonTapped() {
-        delegate?.signupButton()
-    }
-    
-    private func setupView() {
-        backgroundColor = .secondarySystemBackground
-        setHierarchy()
-        setConstraints()
-    }
-    
-    private func setHierarchy() {
-        addSubviews([logoImage, emailTextField, passwordTextField, signupButton, loginButton, spinner])
-    }
-    
-    private func setConstraints() {
-        let padding: CGFloat = 20
-        NSLayoutConstraint.activate([
-            logoImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            logoImage.centerXAnchor.constraint(equalTo: centerXAnchor),
-            logoImage.widthAnchor.constraint(equalToConstant: 150),
-            logoImage.heightAnchor.constraint(equalTo: logoImage.widthAnchor),
-            
-            emailTextField.topAnchor.constraint(equalTo: logoImage.bottomAnchor, constant: padding),
-            emailTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
-            emailTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
-            
-            passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: padding),
-            passwordTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
-            passwordTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
-            
-            loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: padding),
-            loginButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
-            loginButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
-            loginButton.heightAnchor.constraint(equalToConstant: 35),
-            
-            signupButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -padding),
-            signupButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
-            signupButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
-            
-            spinner.centerXAnchor.constraint(equalTo: loginButton.centerXAnchor),
-            spinner.centerYAnchor.constraint(equalTo: loginButton.centerYAnchor),
-        ])
+    var localizedDescription: String {
+        return self.rawValue
     }
 }
