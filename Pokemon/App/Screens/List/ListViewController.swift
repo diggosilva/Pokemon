@@ -41,6 +41,7 @@ class ListViewController: UIViewController {
     }
     
     private func setDelegatesAndDataSources() {
+        listView.searchBar.delegate = self
         listView.tableView.delegate = self
         listView.tableView.dataSource = self
         listView.delegate = self
