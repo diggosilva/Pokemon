@@ -24,6 +24,7 @@ A iOS application written in Swift, that brings a list of pokemons, consuming da
 
 ## Features
 
+- Authentication with Firebase (Signup, Login and Logout)
 - Dark Mode
 - Modern Table View
 - MVVM
