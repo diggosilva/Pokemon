@@ -10,6 +10,8 @@
 		1D1EBD7E492C174318DBB98F /* Pods_Pokemon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 510322D0FC2CE210548AB55A /* Pods_Pokemon.framework */; };
 		921B51E82D5B86B100F1B71A /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921B51E72D5B86B100F1B71A /* SignupViewModel.swift */; };
 		921B51EA2D5B870900F1B71A /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921B51E92D5B870900F1B71A /* AuthService.swift */; };
+		921B51EC2D5B998D00F1B71A /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921B51EB2D5B998D00F1B71A /* LoginViewModel.swift */; };
+		921B51EE2D5B9B1F00F1B71A /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921B51ED2D5B9B1F00F1B71A /* UserModel.swift */; };
 		9226A0E92BD1AB340061ED06 /* PokemonResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226A0E82BD1AB340061ED06 /* PokemonResponse.swift */; };
 		9226A0EB2BD1AB870061ED06 /* PokemonFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9226A0EA2BD1AB870061ED06 /* PokemonFeed.swift */; };
 		923259012BDE8897008BF204 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923259002BDE8897008BF204 /* DetailsView.swift */; };
@@ -40,6 +42,8 @@
 		6F2F022C8176703DFF374E01 /* Pods-Pokemon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokemon.debug.xcconfig"; path = "Target Support Files/Pods-Pokemon/Pods-Pokemon.debug.xcconfig"; sourceTree = "<group>"; };
 		921B51E72D5B86B100F1B71A /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		921B51E92D5B870900F1B71A /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		921B51EB2D5B998D00F1B71A /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		921B51ED2D5B9B1F00F1B71A /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		9226A0E82BD1AB340061ED06 /* PokemonResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonResponse.swift; sourceTree = "<group>"; };
 		9226A0EA2BD1AB870061ED06 /* PokemonFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonFeed.swift; sourceTree = "<group>"; };
 		923259002BDE8897008BF204 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
@@ -103,6 +107,7 @@
 		92149E962BD0949B00B50C7D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				921B51ED2D5B9B1F00F1B71A /* UserModel.swift */,
 				9226A0E82BD1AB340061ED06 /* PokemonResponse.swift */,
 				923259062BDEDF6C008BF204 /* PokemonDetailsResponse.swift */,
 				9226A0EA2BD1AB870061ED06 /* PokemonFeed.swift */,
@@ -193,6 +198,7 @@
 		9291C9CB2D57C35C00AAD1DA /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				921B51EB2D5B998D00F1B71A /* LoginViewModel.swift */,
 				92FAC7A42D58D4A8000B393D /* LoginView.swift */,
 				9291C9D22D57D0D800AAD1DA /* LoginViewController.swift */,
 			);
@@ -351,6 +357,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				921B51EC2D5B998D00F1B71A /* LoginViewModel.swift in Sources */,
 				9291C9D12D57CC6F00AAD1DA /* SignupView.swift in Sources */,
 				9291C9CF2D57C38300AAD1DA /* SignupViewController.swift in Sources */,
 				926F95452BD0356900E38861 /* Bindable.swift in Sources */,
@@ -360,6 +367,7 @@
 				9226A0E92BD1AB340061ED06 /* PokemonResponse.swift in Sources */,
 				92D8E67B2BDD8F2A00660A65 /* PokemonDetails.swift in Sources */,
 				926F95302BD00C7A00E38861 /* ListViewController.swift in Sources */,
+				921B51EE2D5B9B1F00F1B71A /* UserModel.swift in Sources */,
 				9291C9D32D57D0D800AAD1DA /* LoginViewController.swift in Sources */,
 				923259012BDE8897008BF204 /* DetailsView.swift in Sources */,
 				923259072BDEDF6C008BF204 /* PokemonDetailsResponse.swift in Sources */,

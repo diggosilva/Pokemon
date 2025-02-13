@@ -6,12 +6,12 @@
 //
 
 import UIKit
-import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
     // MARK: - Properties
     let loginView = LoginView()
+    let viewModel = LoginViewModel()
     
     // MARK: - Lifecycle
     override func loadView() {
@@ -46,12 +46,10 @@ class LoginViewController: UIViewController {
     }
     
     private func navigateToListVCIfLoggedIn() {
-        if let user = Auth.auth().currentUser {
-            if let email = user.email {
-                let listVC = ListViewController()
-                listVC.listView.email = email
-                navigationController?.pushViewController(listVC, animated: true)
-            }
+        if let user = viewModel.checkIfUserIsLoggedIn() {
+            let listVC = ListViewController()
+            listVC.listView.email = user.email
+            navigationController?.pushViewController(listVC, animated: true)
         }
     }
     
@@ -61,8 +59,8 @@ class LoginViewController: UIViewController {
     }
     
     // MARK: - Alerts
-    private func showAlertError(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    private func showAlertError(message: String) {
+        let alert = UIAlertController(title: "Ops, algo deu errado!", message: message, preferredStyle: .alert)
         let ok = UIAlertAction(title: "Ok", style: .default) { action in
             self.setupLoginButtonWhenTapped(setTitle: "Logar", startAnimating: false)
         }
@@ -87,40 +85,32 @@ extension LoginViewController: LoginViewDelegate {
     func loginButton() {
         setupLoginButtonWhenTapped()
         
-        guard let email = loginView.emailTextField.text, !email.trimmingCharacters(in: .whitespaces).isEmpty else {
-            showAlertError(title: "Erro no email", message: LoginError.invalidEmail.localizedDescription)
-            loginView.emailTextField.text = ""
-            return
-        }
-        
-        // Verificando se o email tem formato válido
-        if !isValidEmail(email) {
-            showAlertError(title: "Erro no email", message: LoginError.invalidEmail.localizedDescription)
-            return
-        }
-        
-        guard let password = loginView.passwordTextField.text, !password.trimmingCharacters(in: .whitespaces).isEmpty else {
-            showAlertError(title: "Erro na senha", message: LoginError.invalidPassword.localizedDescription)
-            return
-        }
-        
-        // Verificando se a senha tem o tamanho mínimo
-        if password.count < 6 {
-            showAlertError(title: "Erro na senha", message: LoginError.invalidPassword.localizedDescription)
-            return
-        }
-        
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
-            guard let self = self else { return }
+        // Validar email
+        guard let email = loginView.emailTextField.text else { return }
+        switch viewModel.validateEmail(email) {
+        case .failure(let error):
+            return showAlertError(message: error.localizedDescription)
+        case .success(let validEmail):
             
-            if error != nil {
-                self.showAlertError(title: "Erro no Login", message: "\(LoginError.loginFailed.localizedDescription)")
-                return
-            } else {
-                if let email = Auth.auth().currentUser?.email {
-                    let listVC = ListViewController()
-                    listVC.listView.email = email
-                    self.navigationController?.pushViewController(listVC, animated: true)
+            // Validar Senha
+            guard let password = loginView.passwordTextField.text else { return }
+            switch viewModel.validatePassword(password) {
+            case .failure(let error):
+                return showAlertError(message: error.localizedDescription)
+            case .success(let validPassword):
+                
+                // Autenticar usuário e enviar pra tela de Feed do App
+                viewModel.loginUser(email: validEmail, password: validPassword) { [weak self] result in
+                    guard let self = self else { return }
+                    switch result {
+                    case .success(let email):
+                        let listVC = ListViewController()
+                        listVC.listView.email = email
+                        navigationController?.pushViewController(listVC, animated: true)
+                        
+                    case .failure(let error):
+                        return showAlertError(message: error.localizedDescription)
+                    }
                 }
             }
         }
@@ -129,22 +119,5 @@ extension LoginViewController: LoginViewDelegate {
     func signupButton() {
         let signupVC = SignupViewController()
         navigationController?.pushViewController(signupVC, animated: true)
-    }
-    
-    // Função para validar formato de email
-    private func isValidEmail(_ email: String) -> Bool {
-        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-        let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegex)
-        return emailTest.evaluate(with: email)
-    }
-}
-
-enum LoginError: String, Error {
-    case invalidEmail = "Digite um email válido! Ex: exemplo@dominio.com"
-    case invalidPassword = "A senha deve ter pelo menos 6 caracteres."
-    case loginFailed = "Falha na autenticação. Por favor, verifique suas credenciais."
-    
-    var localizedDescription: String {
-        return self.rawValue
     }
 }
