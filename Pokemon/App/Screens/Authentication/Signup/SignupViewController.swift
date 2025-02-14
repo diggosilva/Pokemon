@@ -92,16 +92,16 @@ extension SignupViewController: SignupViewDelegate {
                 
                 // Validar confirmaçao da senha
                 guard let confirmPassword = signupView.confirmPasswordTextField.text else { return }
-                switch viewModel.validateConfirmPassword(confirmPassword, password) {
+                switch viewModel.validateConfirmPassword(confirmPassword, validPassword) {
                 case .failure(let error):
                     return showAlertError(message: error.localizedDescription)
                 case .success(let validConfirmPassword):
                     
                     // Registrar usuário, deslogar usuário e encaminhar para tela de Login
-                    viewModel.registerUser(email: email, password: validConfirmPassword) { [weak self] result in
+                    viewModel.registerUser(email: validEmail, password: validConfirmPassword) { [weak self] result in
                         guard let self = self else { return }
                         switch result {
-                        case .success(let success):
+                        case .success(_):
                             return showAlertSuccess()
                         case .failure(let error):
                             return showAlertError(message: error.localizedDescription)
